@@ -50,15 +50,14 @@
     <header>
       <h1>Quiz di esercitazione</h1>
       <div class="controls">
-        <div class="muted">Materia: <strong>Generale</strong></div>
-        <div class="muted">Categoria singola per ora</div>
+        <!-- Header pulito: nessuna scritta aggiuntiva -->
       </div>
     </header>
 
     <main class="card" id="mainCard">
       <!-- Schermata iniziale -->
       <div id="startScreen">
-        <p class="muted">Scegli il tipo di domande e avvia il quiz. Le domande verranno caricate da un file esterno.</p>
+        <p class="muted">Scegli il tipo di domande e avvia il quiz.</p>
         <div class="center">
           <button class="category-btn primary" data-type="mc" id="btnMC">Scelta multipla</button>
           <button class="category-btn" data-type="open" id="btnOpen">Domande aperte</button>
@@ -69,7 +68,6 @@
         <div class="center">
           <button id="resumeBtn" class="ghost hidden">Riprendi quiz salvato</button>
         </div>
-        <div class="muted" style="text-align:center;margin-top:8px">Scorciatoie: premi 1/2/3/4 per selezionare; Invio per avanzare</div>
       </div>
 
       <!-- Area quiz -->
@@ -104,7 +102,7 @@
         </div>
 
         <div class="controls-bottom">
-          <div class="muted">Premi Invio per andare avanti</div>
+          <div></div>
           <div>
             <button id="nextBtn" class="primary" disabled>Prossima</button>
             <button id="endBtn" class="ghost">Termina quiz</button>
@@ -120,12 +118,13 @@
           <div class="btn-row">
             <button id="repeatErrorsBtn" class="ghost">Ripeti errori</button>
             <button id="restartBtn" class="primary">Ricomincia</button>
+            <button id="homeBtn" class="ghost">Torna alla home</button>
           </div>
         </div>
       </div>
     </main>
 
-    <footer>Progetto di esercitazione • Le domande saranno caricate da questions.json</footer>
+    <footer></footer>
   </div>
 
   <script>
@@ -165,6 +164,7 @@
     const scoreSummary = document.getElementById('scoreSummary');
     const repeatErrorsBtn = document.getElementById('repeatErrorsBtn');
     const restartBtn = document.getElementById('restartBtn');
+    const homeBtn = document.getElementById('homeBtn');
 
     // Selezione categoria
     btnMC.addEventListener('click', ()=>{ selectCategory('mc') });
@@ -198,13 +198,11 @@
           {id:2,type:'open',question:'Spiega brevemente la fotosintesi.',solution:'La fotosintesi è il processo con cui le piante...'}
         ];
       }
-      // dopo il caricamento controlliamo se esiste uno stato salvato
       checkResumeAvailability();
     }
 
     // Inizia il quiz
     function startQuiz(fromIds=null){
-      // Scegli domande della categoria selezionata
       const pool = state.allQuestions.filter(q => q.type === state.mode);
       if(fromIds && fromIds.length){
         state.quizQuestions = pool.filter(q => fromIds.includes(q.id));
@@ -217,7 +215,7 @@
       state.incorrectIds = [];
       showScreen('quiz');
       renderQuestion();
-      saveStateToStorage(); // salva stato iniziale
+      saveStateToStorage();
     }
 
     // Mostra schermata
@@ -253,7 +251,6 @@
         openSolution.classList.add('hidden');
         openSolution.textContent = '';
         openImageContainer.innerHTML = '';
-        // mostra immagine se presente
         if(q.image){
           const img = document.createElement('img');
           img.src = q.image;
@@ -282,10 +279,8 @@
 
     // Gestione selezione MC
     function handleMCSelect(q, idx, btnEl){
-      // se già risposto, ignora
       if(nextBtn.disabled === false && state.answers[state.currentIndex]) return;
       const correctIdx = q.answer;
-      // evidenzia corretta/sbagliata
       const optionEls = Array.from(mcArea.children);
       optionEls.forEach((el)=>{
         const i = Number(el.getAttribute('data-idx'));
@@ -293,11 +288,9 @@
         if(i === idx && i !== correctIdx) el.classList.add('wrong');
         el.style.pointerEvents = 'none';
       });
-      // Salva risposta
       const isCorrect = idx === correctIdx;
       state.answers[state.currentIndex] = {id:q.id, correct:isCorrect, userAnswer:idx};
       if(!isCorrect) state.incorrectIds.push(q.id);
-      // Mostra spiegazione opzionale
       if(q.explanation){
         explanationEl.textContent = q.explanation;
         explanationEl.classList.remove('hidden');
@@ -377,6 +370,12 @@
       startQuiz();
     });
 
+    // Torna alla home (senza cancellare lo stato salvato)
+    homeBtn.addEventListener('click', ()=>{
+      showScreen('start');
+      // manteniamo lo stato salvato per riprendere se l'utente vuole
+    });
+
     // Utility shuffle
     function shuffle(arr){
       for(let i=arr.length-1;i>0;i--){
@@ -394,34 +393,8 @@
       nextBtn.disabled = true;
     }
 
-    // Tastiera: 1/2/3/4 per selezionare, Invio per avanzare
-    window.addEventListener('keydown', (e)=>{
-      const key = e.key;
-      if(!quizScreen.classList.contains('hidden')){
-        // MC shortcuts
-        if(state.mode === 'mc'){
-          if(['1','2','3','4'].includes(key)){
-            const idx = Number(key)-1;
-            const optionEl = mcArea.querySelector(`[data-idx="${idx}"]`);
-            if(optionEl) optionEl.click();
-          }
-        }
-        if(key === 'Enter'){
-          if(!nextBtn.disabled){
-            nextBtn.click();
-          }
-        }
-      } else {
-        // start screen
-        if(!startScreen.classList.contains('hidden')){
-          if(key === 'Enter'){
-            startBtn.click();
-          }
-          if(key === '1') selectCategory('mc');
-          if(key === '2') selectCategory('open');
-        }
-      }
-    });
+    // Nota: scorciatoie disabilitate per richiesta dell'utente
+    // (non viene aggiunto alcun listener per 1/2/3/4 o Invio)
 
     // --- Salvataggio e ripristino dello stato in localStorage ---
     const STORAGE_KEY = 'quiz_state_v1';
@@ -495,7 +468,6 @@
 
     // Inizializza selezione di default e carica domande
     selectCategory('mc');
-    // Carichiamo le domande all'avvio per abilitare il pulsante Riprendi se presente
     loadQuestions();
 
     // Nota per GitHub Pages

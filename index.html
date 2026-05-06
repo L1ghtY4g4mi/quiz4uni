@@ -41,6 +41,7 @@
     textarea{width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
     .muted{color:var(--muted);font-size:13px}
     footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+    img.qimg{max-width:100%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
     @media (max-width:600px){.wrap{margin:12px;padding:16px}}
   </style>
 </head>
@@ -65,6 +66,9 @@
         <div class="center">
           <button id="startBtn" class="primary">Avvia quiz</button>
         </div>
+        <div class="center">
+          <button id="resumeBtn" class="ghost hidden">Riprendi quiz salvato</button>
+        </div>
         <div class="muted" style="text-align:center;margin-top:8px">Scorciatoie: premi 1/2/3/4 per selezionare; Invio per avanzare</div>
       </div>
 
@@ -85,6 +89,7 @@
 
           <!-- Domanda aperta -->
           <div id="openArea" class="hidden">
+            <div id="openImageContainer"></div>
             <textarea id="openAnswer" placeholder="Scrivi la tua risposta qui..."></textarea>
             <div style="display:flex;gap:8px;margin-top:8px">
               <button id="showSolutionBtn">Mostra soluzione</button>
@@ -102,6 +107,7 @@
           <div class="muted">Premi Invio per andare avanti</div>
           <div>
             <button id="nextBtn" class="primary" disabled>Prossima</button>
+            <button id="endBtn" class="ghost">Termina quiz</button>
           </div>
         </div>
       </div>
@@ -140,6 +146,7 @@
     const btnMC = document.getElementById('btnMC');
     const btnOpen = document.getElementById('btnOpen');
     const startBtn = document.getElementById('startBtn');
+    const resumeBtn = document.getElementById('resumeBtn');
     const qIndexEl = document.getElementById('qIndex');
     const progressBar = document.getElementById('progressBar');
     const questionText = document.getElementById('questionText');
@@ -147,11 +154,13 @@
     const openArea = document.getElementById('openArea');
     const openAnswer = document.getElementById('openAnswer');
     const openSolution = document.getElementById('openSolution');
+    const openImageContainer = document.getElementById('openImageContainer');
     const showSolutionBtn = document.getElementById('showSolutionBtn');
     const selfGoodBtn = document.getElementById('selfGoodBtn');
     const selfBadBtn = document.getElementById('selfBadBtn');
     const explanationEl = document.getElementById('explanation');
     const nextBtn = document.getElementById('nextBtn');
+    const endBtn = document.getElementById('endBtn');
     const percentText = document.getElementById('percentText');
     const scoreSummary = document.getElementById('scoreSummary');
     const repeatErrorsBtn = document.getElementById('repeatErrorsBtn');
@@ -172,22 +181,25 @@
       startQuiz();
     });
 
-    // Carica questions.json
+    // Carica questions.json (e opzionalmente questions_open.json)
     async function loadQuestions(){
       try{
-        const res = await fetch('questions.json');
-        if(!res.ok) throw new Error('Impossibile caricare questions.json');
-        const data = await res.json();
-        // Filtra per materia se necessario; per ora prendiamo tutto
-        state.allQuestions = data;
+        const [res1, res2] = await Promise.all([
+          fetch('questions.json').catch(()=>null),
+          fetch('questions_open.json').catch(()=>null)
+        ]);
+        const data1 = res1 && res1.ok ? await res1.json() : [];
+        const data2 = res2 && res2.ok ? await res2.json() : [];
+        state.allQuestions = [...data1, ...data2];
       }catch(err){
         console.warn('Errore caricamento questions.json, uso esempio interno', err);
-        // Esempio fallback con due domande
         state.allQuestions = [
           {id:1,type:'mc',question:'Qual è il colore del cielo?',options:['Verde','Blu','Rosso'],answer:1,explanation:'Il cielo appare blu per la diffusione della luce.'},
           {id:2,type:'open',question:'Spiega brevemente la fotosintesi.',solution:'La fotosintesi è il processo con cui le piante...'}
         ];
       }
+      // dopo il caricamento controlliamo se esiste uno stato salvato
+      checkResumeAvailability();
     }
 
     // Inizia il quiz
@@ -195,7 +207,6 @@
       // Scegli domande della categoria selezionata
       const pool = state.allQuestions.filter(q => q.type === state.mode);
       if(fromIds && fromIds.length){
-        // Ripeti solo gli errori: mantieni ordine casuale degli errori
         state.quizQuestions = pool.filter(q => fromIds.includes(q.id));
       } else {
         state.quizQuestions = [...pool];
@@ -206,6 +217,7 @@
       state.incorrectIds = [];
       showScreen('quiz');
       renderQuestion();
+      saveStateToStorage(); // salva stato iniziale
     }
 
     // Mostra schermata
@@ -240,6 +252,15 @@
         openAnswer.value = '';
         openSolution.classList.add('hidden');
         openSolution.textContent = '';
+        openImageContainer.innerHTML = '';
+        // mostra immagine se presente
+        if(q.image){
+          const img = document.createElement('img');
+          img.src = q.image;
+          img.alt = q.imageAlt || 'Immagine domanda';
+          img.className = 'qimg';
+          openImageContainer.appendChild(img);
+        }
         nextBtn.disabled = true;
       }
     }
@@ -282,14 +303,14 @@
         explanationEl.classList.remove('hidden');
       }
       nextBtn.disabled = false;
-      // Focus su next per accessibilità
+      afterAnswerSaved();
       nextBtn.focus();
     }
 
     // Funzioni per domande aperte
     showSolutionBtn.addEventListener('click', ()=>{
       const q = state.quizQuestions[state.currentIndex];
-      if(q.solution){
+      if(q && q.solution){
         openSolution.textContent = q.solution;
         openSolution.classList.remove('hidden');
       } else {
@@ -309,18 +330,19 @@
       const q = state.quizQuestions[state.currentIndex];
       state.answers[state.currentIndex] = {id:q.id, correct:isCorrect, userAnswer:openAnswer.value};
       if(!isCorrect) state.incorrectIds.push(q.id);
-      // mostra spiegazione se presente
       if(q.explanation){
         explanationEl.textContent = q.explanation;
         explanationEl.classList.remove('hidden');
       }
       nextBtn.disabled = false;
+      afterAnswerSaved();
       nextBtn.focus();
     }
 
-    // Next
+    // Next (gestito qui per includere salvataggio)
     nextBtn.addEventListener('click', ()=>{
       state.currentIndex++;
+      saveStateToStorage();
       if(state.currentIndex >= state.quizQuestions.length){
         showResults();
       } else {
@@ -329,26 +351,29 @@
     });
 
     // Risultati
-    function showResults(){
+    function showResults(isPartial = false){
       showScreen('results');
-      const total = state.quizQuestions.length;
+      const totalAttempted = state.answers.filter(a => a).length;
       const correct = state.answers.filter(a => a && a.correct).length;
-      const wrong = total - correct;
-      const percent = total ? Math.round((correct/total)*100) : 0;
+      const wrong = totalAttempted - correct;
+      const percent = totalAttempted ? Math.round((correct/totalAttempted)*100) : 0;
       percentText.textContent = percent + '%';
-      scoreSummary.textContent = `Totale: ${total} • Corrette: ${correct} • Sbagliate: ${wrong}`;
-      // abilita ripeti errori solo se ci sono errori
+      scoreSummary.textContent = isPartial
+        ? `Tentativi: ${totalAttempted} • Corrette: ${correct} • Sbagliate: ${wrong} (risultati parziali)`
+        : `Totale: ${state.quizQuestions.length} • Corrette: ${correct} • Sbagliate: ${state.quizQuestions.length - correct}`;
       repeatErrorsBtn.disabled = state.incorrectIds.length === 0;
     }
 
     // Ripeti errori
     repeatErrorsBtn.addEventListener('click', ()=>{
       if(state.incorrectIds.length === 0) return;
+      clearSavedState();
       startQuiz(state.incorrectIds);
     });
 
     // Ricomincia
     restartBtn.addEventListener('click', ()=>{
+      clearSavedState();
       startQuiz();
     });
 
@@ -372,8 +397,6 @@
     // Tastiera: 1/2/3/4 per selezionare, Invio per avanzare
     window.addEventListener('keydown', (e)=>{
       const key = e.key;
-      // Se siamo nella schermata iniziale, Invio avvia
-      if(!quizScreen.classList.contains('hidden') && !resultsScreen.classList.contains('hidden')) return;
       if(!quizScreen.classList.contains('hidden')){
         // MC shortcuts
         if(state.mode === 'mc'){
@@ -382,18 +405,15 @@
             const optionEl = mcArea.querySelector(`[data-idx="${idx}"]`);
             if(optionEl) optionEl.click();
           }
-        } else {
-          // open: Ctrl+Enter o Alt+Enter per mostrare soluzione? lasciamo Invio per avanzare
         }
         if(key === 'Enter'){
-          // Se next abilitato, premi next
           if(!nextBtn.disabled){
             nextBtn.click();
           }
         }
       } else {
         // start screen
-        if(startScreen.classList.contains('hidden') === false){
+        if(!startScreen.classList.contains('hidden')){
           if(key === 'Enter'){
             startBtn.click();
           }
@@ -403,14 +423,86 @@
       }
     });
 
-    // Inizializza selezione di default
+    // --- Salvataggio e ripristino dello stato in localStorage ---
+    const STORAGE_KEY = 'quiz_state_v1';
+
+    function saveStateToStorage(){
+      try{
+        const toSave = {
+          quizQuestions: state.quizQuestions.map(q => q.id),
+          currentIndex: state.currentIndex,
+          answers: state.answers,
+          mode: state.mode,
+          incorrectIds: state.incorrectIds
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+        checkResumeAvailability();
+      }catch(e){
+        console.warn('Impossibile salvare lo stato', e);
+      }
+    }
+
+    function clearSavedState(){
+      localStorage.removeItem(STORAGE_KEY);
+      resumeBtn.classList.add('hidden');
+    }
+
+    function loadStateFromStorage(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return null;
+      try{
+        return JSON.parse(raw);
+      }catch(e){
+        return null;
+      }
+    }
+
+    function checkResumeAvailability(){
+      const s = loadStateFromStorage();
+      if(s && s.quizQuestions && s.quizQuestions.length > 0){
+        resumeBtn.classList.remove('hidden');
+      } else {
+        resumeBtn.classList.add('hidden');
+      }
+    }
+
+    // --- Termina quiz in anticipo (risultati parziali) ---
+    endBtn.addEventListener('click', ()=>{
+      saveStateToStorage();
+      showResults(true);
+    });
+
+    // --- Riprendi quiz salvato ---
+    resumeBtn.addEventListener('click', async ()=>{
+      const s = loadStateFromStorage();
+      if(!s) return;
+      if(!state.allQuestions || state.allQuestions.length === 0){
+        await loadQuestions();
+      }
+      state.quizQuestions = s.quizQuestions.map(id => state.allQuestions.find(q => q.id === id)).filter(Boolean);
+      state.currentIndex = s.currentIndex || 0;
+      state.answers = s.answers || [];
+      state.mode = s.mode || state.mode;
+      state.incorrectIds = s.incorrectIds || [];
+      showScreen('quiz');
+      renderQuestion();
+    });
+
+    // Salva dopo ogni risposta
+    function afterAnswerSaved(){
+      saveStateToStorage();
+    }
+
+    // Inizializza selezione di default e carica domande
     selectCategory('mc');
+    // Carichiamo le domande all'avvio per abilitare il pulsante Riprendi se presente
+    loadQuestions();
 
     // Nota per GitHub Pages
     // Assicurati di aggiungere un file questions.json nella root con struttura:
     // [
     //   {"id":1,"type":"mc","question":"Test?","options":["A","B","C"],"answer":1,"explanation":"..."},
-    //   {"id":2,"type":"open","question":"Domanda aperta?","solution":"Risposta esempio","explanation":"..."}
+    //   {"id":2,"type":"open","question":"Domanda aperta?","solution":"Risposta esempio","image":"images/q2.png","explanation":"..."}
     // ]
   </script>
 </body>

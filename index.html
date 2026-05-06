@@ -1017,3 +1017,129 @@ function handleFileImport(e) {
 function importJSON(content) {
   const data = JSON.parse(content);
   let count = 0
+  let count = 0;
+  data.forEach(q => {
+    if (!q.prompt && !q.domanda) return;
+    const cat = q.category || q.categoria || 'Generale';
+    if (!subjects.includes(cat)) subjects.push(cat);
+    if (q.type === 'mcq' || q.tipo === 'mcq') {
+      const options = q.options || q.opzioni?.split('|') || [];
+      const correctVal = q.correct || q.corretta || '';
+      const correctIndex = options.indexOf(correctVal);
+      questions.push({ type:'mcq', category:cat, prompt:q.prompt||q.domanda, options, correctIndex: correctIndex>=0?correctIndex:0, explanation:q.explanation||q.spiegazione||'' });
+    } else {
+      questions.push({ type:'open', category:cat, prompt:q.prompt||q.domanda, solution:q.solution||q.soluzione||'', explanation:q.explanation||q.spiegazione||'' });
+    }
+    count++;
+  });
+  return count;
+}
+
+function importCSV(content) {
+  const lines = content.split('\n').filter(l => l.trim());
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,''));
+  let count = 0;
+  for (let i = 1; i < lines.length; i++) {
+    const vals = lines[i].match(/(".*?"|[^,]+|(?<=,)(?=,)|^(?=,)|(?<=,)$)/g) || lines[i].split(',');
+    const row = {};
+    headers.forEach((h,j) => { row[h] = (vals[j]||'').replace(/^"|"$/g,'').trim(); });
+    if (!row.prompt && !row.domanda) continue;
+    const cat = row.category || row.categoria || 'Generale';
+    if (!subjects.includes(cat)) subjects.push(cat);
+    if (row.type === 'mcq' || row.tipo === 'mcq') {
+      const options = [row.option1,row.option2,row.option3,row.option4,row.option5].filter(Boolean);
+      const correctVal = row.correct || row.corretta || '';
+      const correctIndex = options.indexOf(correctVal);
+      questions.push({ type:'mcq', category:cat, prompt:row.prompt||row.domanda, options, correctIndex:correctIndex>=0?correctIndex:0, explanation:row.explanation||row.spiegazione||'' });
+    } else {
+      questions.push({ type:'open', category:cat, prompt:row.prompt||row.domanda, solution:row.solution||row.soluzione||'', explanation:row.explanation||row.spiegazione||'' });
+    }
+    count++;
+  }
+  return count;
+}
+
+function importTXT(content) {
+  const blocks = content.split('---').map(b => b.trim()).filter(Boolean);
+  let count = 0;
+  blocks.forEach(block => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    const obj = {};
+    lines.forEach(line => {
+      const sep = line.indexOf(':');
+      if (sep < 0) return;
+      const key = line.slice(0,sep).trim().toLowerCase();
+      const val = line.slice(sep+1).trim();
+      obj[key] = val;
+    });
+    const cat = obj.categoria || obj.category || 'Generale';
+    if (!subjects.includes(cat)) subjects.push(cat);
+    const type = obj.tipo || obj.type || 'open';
+    if (type === 'mcq') {
+      const options = (obj.opzioni || obj.options || '').split('|').map(o=>o.trim()).filter(Boolean);
+      const correctVal = obj.corretta || obj.correct || '';
+      const correctIndex = options.indexOf(correctVal);
+      questions.push({ type:'mcq', category:cat, prompt:obj.domanda||obj.prompt||'', options, correctIndex:correctIndex>=0?correctIndex:0, explanation:obj.spiegazione||obj.explanation||'' });
+    } else {
+      questions.push({ type:'open', category:cat, prompt:obj.domanda||obj.prompt||'', solution:obj.soluzione||obj.solution||'', explanation:obj.spiegazione||obj.explanation||'' });
+    }
+    count++;
+  });
+  return count;
+}
+
+// ─── EXPORT ───────────────────────────────────────────────────────────────────
+function downloadTemplate() {
+  const template = [
+    { type:'mcq', category:'Fisica', prompt:'L\'unità di misura della forza è?', options:['Joule','Newton','Watt','Pascal'], correct:'Newton', explanation:'La forza si misura in Newton (N).' },
+    { type:'open', category:'Matematica', prompt:'Scrivi la formula del discriminante.', solution:'Δ = b² - 4ac', explanation:'Serve per studiare le soluzioni di un\'equazione di secondo grado.' }
+  ];
+  downloadFile('quiz4uni-modello.json', JSON.stringify(template, null, 2), 'application/json');
+}
+
+function exportJSON() {
+  if (!questions.length) return showToast('Nessuna domanda da esportare');
+  downloadFile('quiz4uni-archivio.json', JSON.stringify(questions, null, 2), 'application/json');
+  showToast('Archivio esportato in JSON!');
+}
+
+function exportCSV() {
+  if (!questions.length) return showToast('Nessuna domanda da esportare');
+  const BOM = '\uFEFF';
+  const headers = ['type','category','prompt','option1','option2','option3','option4','option5','correctIndex','solution','explanation'];
+  const rows = questions.map(q => {
+    const opts = q.options || [];
+    return [
+      q.type, q.category,
+      `"${(q.prompt||'').replace(/"/g,'""')}"`,
+      ...Array(5).fill('').map((_,i) => `"${(opts[i]||'').replace(/"/g,'""')}"`),
+      q.correctIndex ?? '',
+      `"${(q.solution||'').replace(/"/g,'""')}"`,
+      `"${(q.explanation||'').replace(/"/g,'""')}"`
+    ].join(',');
+  });
+  downloadFile('quiz4uni-archivio.csv', BOM + [headers.join(','), ...rows].join('\n'), 'text/csv');
+  showToast('Archivio esportato in CSV!');
+}
+
+function downloadFile(filename, content, mime) {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── START ────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

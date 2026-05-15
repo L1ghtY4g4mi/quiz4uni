@@ -43,102 +43,157 @@
     footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
     img.qimg{max-width:100%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
     @media (max-width:600px){.wrap{margin:12px;padding:16px}}
+
+    #login-box{
+      max-width:420px;
+      margin:80px auto;
+      padding:24px;
+      background:rgba(11,18,32,0.95);
+      border:1px solid rgba(148,163,184,0.2);
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.5);
+      text-align:center;
+    }
+    #login-box input{
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border-radius:10px;
+      border:1px solid rgba(148,163,184,0.25);
+      background:#071029;
+      color:var(--text);
+      box-sizing:border-box;
+    }
+    #login-box button{
+      width:100%;
+      margin-top:12px;
+      padding:12px;
+      border:0;
+      border-radius:10px;
+      background:var(--accent);
+      color:#04202a;
+      font-weight:700;
+      cursor:pointer;
+    }
+    #errore{
+      color:#f87171;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #contenuto-sito{
+      display:none;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Quiz di esercitazione</h1>
-      <div class="controls">
-        <!-- Header pulito: nessuna scritta aggiuntiva -->
-      </div>
-    </header>
 
-    <main class="card" id="mainCard">
-      <!-- Schermata iniziale -->
-      <div id="startScreen">
-        <p class="muted">Scegli il tipo di domande e avvia il quiz.</p>
-        <div class="center">
-          <button class="category-btn primary" data-type="mc" id="btnMC">Scelta multipla</button>
-          <button class="category-btn" data-type="open" id="btnOpen">Domande aperte</button>
-        </div>
-        <div class="center">
-          <button id="startBtn" class="primary">Avvia quiz</button>
-        </div>
-        <div class="center">
-          <button id="resumeBtn" class="ghost hidden">Riprendi quiz salvato</button>
-        </div>
-      </div>
+  <div id="login-box">
+    <h2>Inserisci la password</h2>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="controllaPassword()">Entra</button>
+    <p id="errore"></p>
+  </div>
 
-      <!-- Area quiz -->
-      <div id="quizScreen" class="hidden">
-        <div class="meta">
-          <div><strong id="qIndex">1 / 10</strong></div>
-          <div class="progress" title="Avanzamento">
-            <i id="progressBar"></i>
+  <div id="contenuto-sito">
+    <div class="wrap">
+      <header>
+        <h1>Quiz di esercitazione</h1>
+        <div class="controls">
+          <!-- Header pulito: nessuna scritta aggiuntiva -->
+        </div>
+      </header>
+
+      <main class="card" id="mainCard">
+        <div id="startScreen">
+          <p class="muted">Scegli il tipo di domande e avvia il quiz.</p>
+          <div class="center">
+            <button class="category-btn primary" data-type="mc" id="btnMC">Scelta multipla</button>
+            <button class="category-btn" data-type="open" id="btnOpen">Domande aperte</button>
+          </div>
+          <div class="center">
+            <button id="startBtn" class="primary">Avvia quiz</button>
+          </div>
+          <div class="center">
+            <button id="resumeBtn" class="ghost hidden">Riprendi quiz salvato</button>
           </div>
         </div>
 
-        <div class="question-area">
-          <div class="question-text" id="questionText">Testo domanda</div>
-
-          <!-- Scelta multipla -->
-          <div id="mcArea" class="options hidden" role="list"></div>
-
-          <!-- Domanda aperta -->
-          <div id="openArea" class="hidden">
-            <div id="openImageContainer"></div>
-            <textarea id="openAnswer" placeholder="Scrivi la tua risposta qui..."></textarea>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <button id="showSolutionBtn">Mostra soluzione</button>
-              <div style="flex:1"></div>
-              <button id="selfGoodBtn" class="ghost">Ho fatto bene</button>
-              <button id="selfBadBtn" class="ghost">Ho sbagliato</button>
+        <div id="quizScreen" class="hidden">
+          <div class="meta">
+            <div><strong id="qIndex">1 / 10</strong></div>
+            <div class="progress" title="Avanzamento">
+              <i id="progressBar"></i>
             </div>
-            <div id="openSolution" class="explanation hidden"></div>
           </div>
 
-          <div id="explanation" class="explanation hidden"></div>
-        </div>
+          <div class="question-area">
+            <div class="question-text" id="questionText">Testo domanda</div>
 
-        <div class="controls-bottom">
-          <div></div>
-          <div>
-            <button id="nextBtn" class="primary" disabled>Prossima</button>
-            <button id="endBtn" class="ghost">Termina quiz</button>
+            <div id="mcArea" class="options hidden" role="list"></div>
+
+            <div id="openArea" class="hidden">
+              <div id="openImageContainer"></div>
+              <textarea id="openAnswer" placeholder="Scrivi la tua risposta qui..."></textarea>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button id="showSolutionBtn">Mostra soluzione</button>
+                <div style="flex:1"></div>
+                <button id="selfGoodBtn" class="ghost">Ho fatto bene</button>
+                <button id="selfBadBtn" class="ghost">Ho sbagliato</button>
+              </div>
+              <div id="openSolution" class="explanation hidden"></div>
+            </div>
+
+            <div id="explanation" class="explanation hidden"></div>
+          </div>
+
+          <div class="controls-bottom">
+            <div></div>
+            <div>
+              <button id="nextBtn" class="primary" disabled>Prossima</button>
+              <button id="endBtn" class="ghost">Termina quiz</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Schermata risultati -->
-      <div id="resultsScreen" class="hidden card">
-        <div class="results">
-          <div class="big-percent" id="percentText">0%</div>
-          <div class="muted" id="scoreSummary">Totale: 0 • Corrette: 0 • Sbagliate: 0</div>
-          <div class="btn-row">
-            <button id="repeatErrorsBtn" class="ghost">Ripeti errori</button>
-            <button id="restartBtn" class="primary">Ricomincia</button>
-            <button id="homeBtn" class="ghost">Torna alla home</button>
+        <div id="resultsScreen" class="hidden card">
+          <div class="results">
+            <div class="big-percent" id="percentText">0%</div>
+            <div class="muted" id="scoreSummary">Totale: 0 • Corrette: 0 • Sbagliate: 0</div>
+            <div class="btn-row">
+              <button id="repeatErrorsBtn" class="ghost">Ripeti errori</button>
+              <button id="restartBtn" class="primary">Ricomincia</button>
+              <button id="homeBtn" class="ghost">Torna alla home</button>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
 
-    <footer></footer>
+      <footer></footer>
+    </div>
   </div>
 
   <script>
-    // Stato dell'app
+    function controllaPassword() {
+      const passwordCorretta = "MIA_PASSWORD_123";
+      const passwordUtente = document.getElementById("password").value;
+
+      if (passwordUtente === passwordCorretta) {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("contenuto-sito").style.display = "block";
+      } else {
+        document.getElementById("errore").textContent = "Password errata";
+      }
+    }
+
     const state = {
-      allQuestions: [],        // tutte le domande caricate
-      quizQuestions: [],       // domande correnti (random o ripetizione errori)
+      allQuestions: [],
+      quizQuestions: [],
       currentIndex: 0,
-      answers: [],             // {id, correct:boolean, userAnswer}
-      mode: 'mc',              // 'mc' o 'open'
-      incorrectIds: []        // id delle domande sbagliate
+      answers: [],
+      mode: 'mc',
+      incorrectIds: []
     };
 
-    // Elementi DOM
     const startScreen = document.getElementById('startScreen');
     const quizScreen = document.getElementById('quizScreen');
     const resultsScreen = document.getElementById('resultsScreen');
@@ -166,7 +221,6 @@
     const restartBtn = document.getElementById('restartBtn');
     const homeBtn = document.getElementById('homeBtn');
 
-    // Selezione categoria
     btnMC.addEventListener('click', ()=>{ selectCategory('mc') });
     btnOpen.addEventListener('click', ()=>{ selectCategory('open') });
     function selectCategory(type){
@@ -175,13 +229,11 @@
       btnOpen.classList.toggle('primary', type==='open');
     }
 
-    // Avvia quiz
     startBtn.addEventListener('click', async ()=>{
       await loadQuestions();
       startQuiz();
     });
 
-    // Carica questions.json (e opzionalmente questions_open.json)
     async function loadQuestions(){
       try{
         const [res1, res2] = await Promise.all([
@@ -201,7 +253,6 @@
       checkResumeAvailability();
     }
 
-    // Inizia il quiz
     function startQuiz(fromIds=null){
       const pool = state.allQuestions.filter(q => q.type === state.mode);
       if(fromIds && fromIds.length){
@@ -218,14 +269,12 @@
       saveStateToStorage();
     }
 
-    // Mostra schermata
     function showScreen(name){
       startScreen.classList.toggle('hidden', name!=='start');
       quizScreen.classList.toggle('hidden', name!=='quiz');
       resultsScreen.classList.toggle('hidden', name!=='results');
     }
 
-    // Render domanda corrente
     function renderQuestion(){
       clearInteraction();
       const q = state.quizQuestions[state.currentIndex];
@@ -262,7 +311,6 @@
       }
     }
 
-    // Render opzioni per scelta multipla
     function renderOptions(q){
       mcArea.innerHTML = '';
       q.options.forEach((opt, idx) => {
@@ -277,7 +325,6 @@
       nextBtn.disabled = true;
     }
 
-    // Gestione selezione MC
     function handleMCSelect(q, idx, btnEl){
       if(nextBtn.disabled === false && state.answers[state.currentIndex]) return;
       const correctIdx = q.answer;
@@ -300,7 +347,6 @@
       nextBtn.focus();
     }
 
-    // Funzioni per domande aperte
     showSolutionBtn.addEventListener('click', ()=>{
       const q = state.quizQuestions[state.currentIndex];
       if(q && q.solution){
@@ -332,7 +378,6 @@
       nextBtn.focus();
     }
 
-    // Next (gestito qui per includere salvataggio)
     nextBtn.addEventListener('click', ()=>{
       state.currentIndex++;
       saveStateToStorage();
@@ -343,7 +388,6 @@
       }
     });
 
-    // Risultati
     function showResults(isPartial = false){
       showScreen('results');
       const totalAttempted = state.answers.filter(a => a).length;
@@ -357,26 +401,21 @@
       repeatErrorsBtn.disabled = state.incorrectIds.length === 0;
     }
 
-    // Ripeti errori
     repeatErrorsBtn.addEventListener('click', ()=>{
       if(state.incorrectIds.length === 0) return;
       clearSavedState();
       startQuiz(state.incorrectIds);
     });
 
-    // Ricomincia
     restartBtn.addEventListener('click', ()=>{
       clearSavedState();
       startQuiz();
     });
 
-    // Torna alla home (senza cancellare lo stato salvato)
     homeBtn.addEventListener('click', ()=>{
       showScreen('start');
-      // manteniamo lo stato salvato per riprendere se l'utente vuole
     });
 
-    // Utility shuffle
     function shuffle(arr){
       for(let i=arr.length-1;i>0;i--){
         const j = Math.floor(Math.random()*(i+1));
@@ -384,7 +423,6 @@
       }
     }
 
-    // Pulisce interazioni precedenti
     function clearInteraction(){
       mcArea.innerHTML = '';
       openArea.classList.add('hidden');
@@ -393,10 +431,6 @@
       nextBtn.disabled = true;
     }
 
-    // Nota: scorciatoie disabilitate per richiesta dell'utente
-    // (non viene aggiunto alcun listener per 1/2/3/4 o Invio)
-
-    // --- Salvataggio e ripristino dello stato in localStorage ---
     const STORAGE_KEY = 'quiz_state_v1';
 
     function saveStateToStorage(){
@@ -439,13 +473,11 @@
       }
     }
 
-    // --- Termina quiz in anticipo (risultati parziali) ---
     endBtn.addEventListener('click', ()=>{
       saveStateToStorage();
       showResults(true);
     });
 
-    // --- Riprendi quiz salvato ---
     resumeBtn.addEventListener('click', async ()=>{
       const s = loadStateFromStorage();
       if(!s) return;
@@ -461,21 +493,15 @@
       renderQuestion();
     });
 
-    // Salva dopo ogni risposta
     function afterAnswerSaved(){
       saveStateToStorage();
     }
 
-    // Inizializza selezione di default e carica domande
     selectCategory('mc');
     loadQuestions();
-
-    // Nota per GitHub Pages
-    // Assicurati di aggiungere un file questions.json nella root con struttura:
-    // [
-    //   {"id":1,"type":"mc","question":"Test?","options":["A","B","C"],"answer":1,"explanation":"..."},
-    //   {"id":2,"type":"open","question":"Domanda aperta?","solution":"Risposta esempio","image":"images/q2.png","explanation":"..."}
-    // ]
   </script>
 </body>
 </html>
+ 
+
+ 

@@ -18,7 +18,7 @@
     button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:10px 14px;border-radius:8px;cursor:pointer}
     button.primary{background:linear-gradient(90deg,var(--accent),#7dd3fc);color:#042027;border:none}
     button.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.04)}
-    .center{display:flex;gap:12px;justify-content:center;margin:18px 0}
+    .center{display:flex;gap:12px;justify-content:center;margin:18px 0;flex-wrap:wrap}
     .category-btn{min-width:160px;font-weight:600}
     .card{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px}
     .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
@@ -32,16 +32,18 @@
     .option.wrong{background:linear-gradient(90deg, rgba(220,38,38,0.08), rgba(220,38,38,0.04));border-color:rgba(220,38,38,0.6)}
     .explanation{margin-top:8px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted);font-size:14px}
     .controls-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
-    .kbd{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.02);font-weight:600}
     .hidden{display:none}
     .results{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
     .big-percent{font-size:48px;font-weight:800;color:var(--accent)}
-    .small{color:var(--muted)}
-    .btn-row{display:flex;gap:10px}
-    textarea{width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    textarea{width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);box-sizing:border-box}
     .muted{color:var(--muted);font-size:13px}
     footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
     img.qimg{max-width:100%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
+    #openImageContainer{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+    @media (min-width:700px){
+      #openImageContainer.grid-2{display:grid;grid-template-columns:1fr 1fr}
+    }
     @media (max-width:600px){.wrap{margin:12px;padding:16px}}
 
     #login-box{
@@ -98,9 +100,7 @@
     <div class="wrap">
       <header>
         <h1>Quiz di esercitazione</h1>
-        <div class="controls">
-          <!-- Header pulito: nessuna scritta aggiuntiva -->
-        </div>
+        <div class="controls"></div>
       </header>
 
       <main class="card" id="mainCard">
@@ -133,8 +133,8 @@
 
             <div id="openArea" class="hidden">
               <div id="openImageContainer"></div>
-              <textarea id="openAnswer" placeholder="Scrivi la tua risposta qui..."></textarea>
-              <div style="display:flex;gap:8px;margin-top:8px">
+              <textarea id="openAnswer" placeholder="Scrivi qui la tua risposta..."></textarea>
+              <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
                 <button id="showSolutionBtn">Mostra soluzione</button>
                 <div style="flex:1"></div>
                 <button id="selfGoodBtn" class="ghost">Ho fatto bene</button>
@@ -221,8 +221,9 @@
     const restartBtn = document.getElementById('restartBtn');
     const homeBtn = document.getElementById('homeBtn');
 
-    btnMC.addEventListener('click', ()=>{ selectCategory('mc') });
-    btnOpen.addEventListener('click', ()=>{ selectCategory('open') });
+    btnMC.addEventListener('click', ()=>{ selectCategory('mc'); });
+    btnOpen.addEventListener('click', ()=>{ selectCategory('open'); });
+
     function selectCategory(type){
       state.mode = type;
       btnMC.classList.toggle('primary', type==='mc');
@@ -231,6 +232,7 @@
 
     startBtn.addEventListener('click', async ()=>{
       await loadQuestions();
+      clearSavedState();
       startQuiz();
     });
 
@@ -240,14 +242,16 @@
           fetch('questions.json').catch(()=>null),
           fetch('questions_open.json').catch(()=>null)
         ]);
+
         const data1 = res1 && res1.ok ? await res1.json() : [];
         const data2 = res2 && res2.ok ? await res2.json() : [];
+
         state.allQuestions = [...data1, ...data2];
       }catch(err){
-        console.warn('Errore caricamento questions.json, uso esempio interno', err);
+        console.warn('Errore caricamento file domande', err);
         state.allQuestions = [
           {id:1,type:'mc',question:'Qual è il colore del cielo?',options:['Verde','Blu','Rosso'],answer:1,explanation:'Il cielo appare blu per la diffusione della luce.'},
-          {id:2,type:'open',question:'Spiega brevemente la fotosintesi.',solution:'La fotosintesi è il processo con cui le piante...'}
+          {id:2,type:'open',question:'Spiega brevemente la fotosintesi.',solution:'La fotosintesi è il processo con cui le piante trasformano luce, acqua e anidride carbonica in nutrienti.'}
         ];
       }
       checkResumeAvailability();
@@ -255,11 +259,13 @@
 
     function startQuiz(fromIds=null){
       const pool = state.allQuestions.filter(q => q.type === state.mode);
+
       if(fromIds && fromIds.length){
         state.quizQuestions = pool.filter(q => fromIds.includes(q.id));
       } else {
         state.quizQuestions = [...pool];
       }
+
       shuffle(state.quizQuestions);
       state.currentIndex = 0;
       state.answers = [];
@@ -277,13 +283,15 @@
 
     function renderQuestion(){
       clearInteraction();
+
       const q = state.quizQuestions[state.currentIndex];
       if(!q){
         showResults();
         return;
       }
+
       qIndexEl.textContent = `${state.currentIndex+1} / ${state.quizQuestions.length}`;
-      const pct = Math.round(((state.currentIndex)/state.quizQuestions.length)*100);
+      const pct = Math.round((state.currentIndex / state.quizQuestions.length) * 100);
       progressBar.style.width = pct + '%';
       questionText.textContent = q.question;
       explanationEl.classList.add('hidden');
@@ -296,17 +304,31 @@
       } else {
         mcArea.classList.add('hidden');
         openArea.classList.remove('hidden');
+
         openAnswer.value = '';
         openSolution.classList.add('hidden');
         openSolution.textContent = '';
         openImageContainer.innerHTML = '';
-        if(q.image){
+        openImageContainer.classList.remove('grid-2');
+
+        if (q.images && q.images.length) {
+          if (q.images.length > 1) openImageContainer.classList.add('grid-2');
+
+          q.images.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = `Immagine domanda ${q.id} - ${index + 1}`;
+            img.className = 'qimg';
+            openImageContainer.appendChild(img);
+          });
+        } else if (q.image) {
           const img = document.createElement('img');
           img.src = q.image;
           img.alt = q.imageAlt || 'Immagine domanda';
           img.className = 'qimg';
           openImageContainer.appendChild(img);
         }
+
         nextBtn.disabled = true;
       }
     }
@@ -319,29 +341,35 @@
         btn.setAttribute('data-idx', idx);
         btn.tabIndex = 0;
         btn.innerHTML = `<strong>${idx+1}.</strong> ${opt}`;
-        btn.addEventListener('click', ()=> handleMCSelect(q, idx, btn));
+        btn.addEventListener('click', ()=> handleMCSelect(q, idx));
         mcArea.appendChild(btn);
       });
       nextBtn.disabled = true;
     }
 
-    function handleMCSelect(q, idx, btnEl){
-      if(nextBtn.disabled === false && state.answers[state.currentIndex]) return;
+    function handleMCSelect(q, idx){
+      if(state.answers[state.currentIndex]) return;
+
       const correctIdx = q.answer;
       const optionEls = Array.from(mcArea.children);
+
       optionEls.forEach((el)=>{
         const i = Number(el.getAttribute('data-idx'));
         if(i === correctIdx) el.classList.add('correct');
         if(i === idx && i !== correctIdx) el.classList.add('wrong');
         el.style.pointerEvents = 'none';
       });
+
       const isCorrect = idx === correctIdx;
       state.answers[state.currentIndex] = {id:q.id, correct:isCorrect, userAnswer:idx};
+
       if(!isCorrect) state.incorrectIds.push(q.id);
+
       if(q.explanation){
         explanationEl.textContent = q.explanation;
         explanationEl.classList.remove('hidden');
       }
+
       nextBtn.disabled = false;
       afterAnswerSaved();
       nextBtn.focus();
@@ -351,28 +379,39 @@
       const q = state.quizQuestions[state.currentIndex];
       if(q && q.solution){
         openSolution.textContent = q.solution;
-        openSolution.classList.remove('hidden');
       } else {
         openSolution.textContent = 'Soluzione non disponibile.';
-        openSolution.classList.remove('hidden');
       }
+      openSolution.classList.remove('hidden');
     });
 
     selfGoodBtn.addEventListener('click', ()=>{
       recordOpenAnswer(true);
     });
+
     selfBadBtn.addEventListener('click', ()=>{
       recordOpenAnswer(false);
     });
 
     function recordOpenAnswer(isCorrect){
       const q = state.quizQuestions[state.currentIndex];
-      state.answers[state.currentIndex] = {id:q.id, correct:isCorrect, userAnswer:openAnswer.value};
-      if(!isCorrect) state.incorrectIds.push(q.id);
+      if(!q) return;
+
+      state.answers[state.currentIndex] = {
+        id:q.id,
+        correct:isCorrect,
+        userAnswer:openAnswer.value || ''
+      };
+
+      if(!isCorrect && !state.incorrectIds.includes(q.id)){
+        state.incorrectIds.push(q.id);
+      }
+
       if(q.explanation){
         explanationEl.textContent = q.explanation;
         explanationEl.classList.remove('hidden');
       }
+
       nextBtn.disabled = false;
       afterAnswerSaved();
       nextBtn.focus();
@@ -381,6 +420,7 @@
     nextBtn.addEventListener('click', ()=>{
       state.currentIndex++;
       saveStateToStorage();
+
       if(state.currentIndex >= state.quizQuestions.length){
         showResults();
       } else {
@@ -390,14 +430,17 @@
 
     function showResults(isPartial = false){
       showScreen('results');
+
       const totalAttempted = state.answers.filter(a => a).length;
       const correct = state.answers.filter(a => a && a.correct).length;
       const wrong = totalAttempted - correct;
-      const percent = totalAttempted ? Math.round((correct/totalAttempted)*100) : 0;
+      const percent = totalAttempted ? Math.round((correct / totalAttempted) * 100) : 0;
+
       percentText.textContent = percent + '%';
       scoreSummary.textContent = isPartial
         ? `Tentativi: ${totalAttempted} • Corrette: ${correct} • Sbagliate: ${wrong} (risultati parziali)`
         : `Totale: ${state.quizQuestions.length} • Corrette: ${correct} • Sbagliate: ${state.quizQuestions.length - correct}`;
+
       repeatErrorsBtn.disabled = state.incorrectIds.length === 0;
     }
 
@@ -481,14 +524,20 @@
     resumeBtn.addEventListener('click', async ()=>{
       const s = loadStateFromStorage();
       if(!s) return;
+
       if(!state.allQuestions || state.allQuestions.length === 0){
         await loadQuestions();
       }
-      state.quizQuestions = s.quizQuestions.map(id => state.allQuestions.find(q => q.id === id)).filter(Boolean);
+
+      state.quizQuestions = s.quizQuestions
+        .map(id => state.allQuestions.find(q => q.id === id))
+        .filter(Boolean);
+
       state.currentIndex = s.currentIndex || 0;
       state.answers = s.answers || [];
       state.mode = s.mode || state.mode;
       state.incorrectIds = s.incorrectIds || [];
+
       showScreen('quiz');
       renderQuestion();
     });
@@ -502,6 +551,3 @@
   </script>
 </body>
 </html>
- 
-
- 

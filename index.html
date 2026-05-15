@@ -11,6 +11,7 @@
       --accent:#06b6d4;
       --success:#16a34a;
       --danger:#dc2626;
+      --warning:#f59e0b;
       --muted:#94a3b8;
       --text:#e6eef8;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -37,6 +38,8 @@
       align-items:center;
       justify-content:space-between;
       margin-bottom:18px;
+      gap:16px;
+      flex-wrap:wrap;
     }
 
     h1{
@@ -48,6 +51,22 @@
       display:flex;
       gap:10px;
       align-items:center;
+    }
+
+    .timer-badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      color:var(--text);
+      font-weight:700;
+      font-size:14px;
+      display:none;
+    }
+
+    .timer-badge.active{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
     }
 
     button{
@@ -76,6 +95,12 @@
       border:1px dashed rgba(255,255,255,0.16);
     }
 
+    button.warn{
+      background:rgba(245,158,11,0.14);
+      border:1px solid rgba(245,158,11,0.4);
+      color:#ffd89a;
+    }
+
     .center{
       display:flex;
       gap:12px;
@@ -100,6 +125,8 @@
       justify-content:space-between;
       align-items:center;
       margin-bottom:12px;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
     .progress{
@@ -109,6 +136,7 @@
       overflow:hidden;
       flex:1;
       margin-left:12px;
+      min-width:180px;
     }
 
     .progress > i{
@@ -342,15 +370,18 @@
     <div class="wrap">
       <header>
         <h1>Quiz di esercitazione</h1>
-        <div class="controls"></div>
+        <div class="controls">
+          <div id="timerBadge" class="timer-badge">⏱ <span id="timerText">45:00</span></div>
+        </div>
       </header>
 
       <main class="card" id="mainCard">
         <div id="startScreen">
-          <p class="muted">Scegli il tipo di domande e avvia il quiz.</p>
+          <p class="muted">Scegli il tipo di modalità e avvia il quiz.</p>
           <div class="center">
             <button class="category-btn primary" data-type="mc" id="btnMC">Scelta multipla</button>
             <button class="category-btn" data-type="open" id="btnOpen">Domande aperte</button>
+            <button class="category-btn" data-type="sim" id="btnSim">Simulazione</button>
           </div>
           <div class="center">
             <button id="startBtn" class="primary">Avvia quiz</button>
@@ -377,6 +408,7 @@
               <textarea id="openAnswer" placeholder="Scrivi qui la tua risposta..."></textarea>
               <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
                 <button id="showSolutionBtn">Mostra soluzione</button>
+                <button id="skipBtn" class="warn">Salta</button>
                 <div style="flex:1"></div>
                 <button id="selfGoodBtn" class="ghost">Ho fatto bene</button>
                 <button id="selfBadBtn" class="ghost">Ho sbagliato</button>
@@ -440,7 +472,12 @@
       currentIndex: 0,
       answers: [],
       mode: 'mc',
-      incorrectIds: []
+      incorrectIds: [],
+      skippedIds: [],
+      isSimulation: false,
+      simulationEndedByTime: false,
+      timerSeconds: 45 * 60,
+      timerInterval: null
     };
 
     const startScreen = document.getElementById('startScreen');
@@ -448,6 +485,7 @@
     const resultsScreen = document.getElementById('resultsScreen');
     const btnMC = document.getElementById('btnMC');
     const btnOpen = document.getElementById('btnOpen');
+    const btnSim = document.getElementById('btnSim');
     const startBtn = document.getElementById('startBtn');
     const resumeBtn = document.getElementById('resumeBtn');
     const qIndexEl = document.getElementById('qIndex');
@@ -458,6 +496,7 @@
     const openAnswer = document.getElementById('openAnswer');
     const openSolution = document.getElementById('openSolution');
     const showSolutionBtn = document.getElementById('showSolutionBtn');
+    const skipBtn = document.getElementById('skipBtn');
     const selfGoodBtn = document.getElementById('selfGoodBtn');
     const selfBadBtn = document.getElementById('selfBadBtn');
     const explanationEl = document.getElementById('explanation');
@@ -474,13 +513,18 @@
     const overlayMessage = document.getElementById('overlayMessage');
     const closeOverlayBtn = document.getElementById('closeOverlayBtn');
 
+    const timerBadge = document.getElementById('timerBadge');
+    const timerText = document.getElementById('timerText');
+
     btnMC.addEventListener('click', ()=>{ selectCategory('mc'); });
     btnOpen.addEventListener('click', ()=>{ selectCategory('open'); });
+    btnSim.addEventListener('click', ()=>{ selectCategory('sim'); });
 
     function selectCategory(type){
       state.mode = type;
       btnMC.classList.toggle('primary', type === 'mc');
       btnOpen.classList.toggle('primary', type === 'open');
+      btnSim.classList.toggle('primary', type === 'sim');
     }
 
     startBtn.addEventListener('click', async ()=>{
@@ -523,21 +567,47 @@
     }
 
     function startQuiz(fromIds=null){
-      const pool = state.allQuestions.filter(q => q.type === state.mode);
+      stopTimer();
+      state.simulationEndedByTime = false;
 
-      if(fromIds && fromIds.length){
-        state.quizQuestions = pool.filter(q => fromIds.includes(q.id));
+      const mcPool = state.allQuestions.filter(q => q.type === 'mc');
+      const openPool = state.allQuestions.filter(q => q.type === 'open');
+
+      if(state.mode === 'sim'){
+        state.isSimulation = true;
+        const mcSelected = sampleQuestions(mcPool, 4);
+        const openSelected = sampleQuestions(openPool, 6);
+        state.quizQuestions = [...mcSelected, ...openSelected];
+        shuffle(state.quizQuestions);
+        state.timerSeconds = 45 * 60;
+        startTimer();
       } else {
-        state.quizQuestions = [...pool];
+        state.isSimulation = false;
+        const pool = state.allQuestions.filter(q => q.type === state.mode);
+
+        if(fromIds && fromIds.length){
+          state.quizQuestions = pool.filter(q => fromIds.includes(q.id));
+        } else {
+          state.quizQuestions = [...pool];
+        }
+
+        shuffle(state.quizQuestions);
+        hideTimer();
       }
 
-      shuffle(state.quizQuestions);
       state.currentIndex = 0;
       state.answers = [];
       state.incorrectIds = [];
+      state.skippedIds = [];
       showScreen('quiz');
       renderQuestion();
       saveStateToStorage();
+    }
+
+    function sampleQuestions(arr, count){
+      const copy = [...arr];
+      shuffle(copy);
+      return copy.slice(0, Math.min(count, copy.length));
     }
 
     function showScreen(name){
@@ -607,7 +677,12 @@
       });
 
       const isCorrect = idx === correctIdx;
-      state.answers[state.currentIndex] = {id:q.id, correct:isCorrect, userAnswer:idx};
+      state.answers[state.currentIndex] = {
+        id:q.id,
+        correct:isCorrect,
+        userAnswer:idx,
+        skipped:false
+      };
 
       if(!isCorrect && !state.incorrectIds.includes(q.id)){
         state.incorrectIds.push(q.id);
@@ -639,6 +714,31 @@
         openImageFullscreen(q.images[0]);
       } else {
         openOverlayMessage('Immagine non disponibile.');
+      }
+    });
+
+    skipBtn.addEventListener('click', ()=>{
+      const q = state.quizQuestions[state.currentIndex];
+      if(!q) return;
+
+      state.answers[state.currentIndex] = {
+        id:q.id,
+        correct:null,
+        userAnswer:'',
+        skipped:true
+      };
+
+      if(!state.skippedIds.includes(q.id)){
+        state.skippedIds.push(q.id);
+      }
+
+      state.currentIndex++;
+      saveStateToStorage();
+
+      if(state.currentIndex >= state.quizQuestions.length){
+        showResults();
+      } else {
+        renderQuestion();
       }
     });
 
@@ -699,7 +799,8 @@
       state.answers[state.currentIndex] = {
         id:q.id,
         correct:isCorrect,
-        userAnswer:openAnswer.value || ''
+        userAnswer:openAnswer.value || '',
+        skipped:false
       };
 
       if(!isCorrect && !state.incorrectIds.includes(q.id)){
@@ -730,24 +831,36 @@
     });
 
     function showResults(isPartial = false){
+      stopTimer();
       showScreen('results');
 
-      const totalAttempted = state.answers.filter(a => a).length;
-      const correct = state.answers.filter(a => a && a.correct).length;
-      const wrong = totalAttempted - correct;
+      const attempted = state.answers.filter(a => a && !a.skipped);
+      const totalAttempted = attempted.length;
+      const correct = attempted.filter(a => a.correct === true).length;
+      const wrong = attempted.filter(a => a.correct === false).length;
+      const skipped = state.answers.filter(a => a && a.skipped).length;
       const percent = totalAttempted ? Math.round((correct / totalAttempted) * 100) : 0;
 
       percentText.textContent = percent + '%';
-      scoreSummary.textContent = isPartial
-        ? `Tentativi: ${totalAttempted} • Corrette: ${correct} • Sbagliate: ${wrong} (risultati parziali)`
-        : `Totale: ${state.quizQuestions.length} • Corrette: ${correct} • Sbagliate: ${state.quizQuestions.length - correct}`;
 
-      repeatErrorsBtn.disabled = state.incorrectIds.length === 0;
+      if(state.isSimulation && state.simulationEndedByTime){
+        scoreSummary.textContent = `Simulazione terminata: tempo scaduto • Risposte valutate: ${totalAttempted} • Corrette: ${correct} • Sbagliate: ${wrong} • Saltate: ${skipped}`;
+      } else if(isPartial){
+        scoreSummary.textContent = `Tentativi: ${totalAttempted} • Corrette: ${correct} • Sbagliate: ${wrong} • Saltate: ${skipped} (risultati parziali)`;
+      } else {
+        scoreSummary.textContent = `Valutate: ${totalAttempted} • Corrette: ${correct} • Sbagliate: ${wrong} • Saltate: ${skipped}`;
+      }
+
+      repeatErrorsBtn.disabled = state.incorrectIds.length === 0 || state.mode === 'sim';
     }
 
     repeatErrorsBtn.addEventListener('click', ()=>{
       if(state.incorrectIds.length === 0) return;
       clearSavedState();
+      selectCategory('mc');
+      if(state.allQuestions.filter(q => q.type === 'mc' && state.incorrectIds.includes(q.id)).length === 0){
+        selectCategory('open');
+      }
       startQuiz(state.incorrectIds);
     });
 
@@ -757,6 +870,8 @@
     });
 
     homeBtn.addEventListener('click', ()=>{
+      stopTimer();
+      hideTimer();
       showScreen('start');
     });
 
@@ -776,6 +891,43 @@
       closeOverlay();
     }
 
+    function startTimer(){
+      showTimer();
+      updateTimerUI();
+      stopTimer();
+      state.timerInterval = setInterval(() => {
+        state.timerSeconds--;
+        updateTimerUI();
+        if(state.timerSeconds <= 0){
+          state.timerSeconds = 0;
+          updateTimerUI();
+          state.simulationEndedByTime = true;
+          showResults();
+        }
+      }, 1000);
+    }
+
+    function stopTimer(){
+      if(state.timerInterval){
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+    }
+
+    function showTimer(){
+      timerBadge.classList.add('active');
+    }
+
+    function hideTimer(){
+      timerBadge.classList.remove('active');
+    }
+
+    function updateTimerUI(){
+      const min = String(Math.floor(state.timerSeconds / 60)).padStart(2, '0');
+      const sec = String(state.timerSeconds % 60).padStart(2, '0');
+      timerText.textContent = `${min}:${sec}`;
+    }
+
     const STORAGE_KEY = 'quiz_state_v1';
 
     function saveStateToStorage(){
@@ -785,7 +937,11 @@
           currentIndex: state.currentIndex,
           answers: state.answers,
           mode: state.mode,
-          incorrectIds: state.incorrectIds
+          incorrectIds: state.incorrectIds,
+          skippedIds: state.skippedIds,
+          isSimulation: state.isSimulation,
+          simulationEndedByTime: state.simulationEndedByTime,
+          timerSeconds: state.timerSeconds
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
         checkResumeAvailability();
@@ -839,9 +995,19 @@
       state.answers = s.answers || [];
       state.mode = s.mode || state.mode;
       state.incorrectIds = s.incorrectIds || [];
+      state.skippedIds = s.skippedIds || [];
+      state.isSimulation = s.isSimulation || false;
+      state.simulationEndedByTime = s.simulationEndedByTime || false;
+      state.timerSeconds = s.timerSeconds ?? (45 * 60);
 
       showScreen('quiz');
       renderQuestion();
+
+      if(state.isSimulation && state.timerSeconds > 0){
+        startTimer();
+      } else {
+        hideTimer();
+      }
     });
 
     function afterAnswerSaved(){

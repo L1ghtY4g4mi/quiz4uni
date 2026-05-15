@@ -1,89 +1,1005 @@
 [
-  {"id":1,"type":"mc","question":"L’impostazione di un filtro di cut-off per un rugosimetro:","options":["È inferiore a 0,8 mm quando le lavorazioni sono grossolane","Influenza la determinazione della tessitura primaria","Serve ad escludere tessiture con periodicità ad esso inferiori","Definisce la risoluzione dello strumento"],"answer":1,"explanation":""},
-  {"id":2,"type":"mc","question":"La rivelazione dell'ondulazione di una superficie:","options":["è generata dal pattino","si ottiene filtrando la tessitura primaria","è comprensiva anche della tessitura primaria","è inutile su una superficie anisotropa"],"answer":2,"explanation":""},
-  {"id":3,"type":"mc","question":"In un processo di tornitura la rugosità media aritmetica generata:","options":["dipende dalla profondità di passata","è indipendente dalla velocità di taglio utilizzata","è funzione dell’angolo di taglio","vale un quarto della rugosità Rz (ISO)"],"answer":1,"explanation":""},
-  {"id":4,"type":"mc","question":"Due superfici speculari con un rapporto opposto tra pieni e vuoti hanno:","options":["la stessa curva di Abbott","la stessa Ra","curve di Abbott simmetriche","la stessa curva di densità delle ordinate"],"answer":1,"explanation":""},
-  {"id":5,"type":"mc","question":"Da un punto di vista metrologico, la risoluzione di uno strumento deve essere","options":["Inferiore agli estremi del campo di tolleranza della quota misurata","Funzione della sola quota nominale da misurare","Scelta in base alle tolleranze generali di lavorazione","Calibrata mediante uso di campioni di riferimento"],"answer":0,"explanation":""},
-  {"id":6,"type":"mc","question":"L'unità fondamentale di un nonio cinquantesima su un calibro a corsoio vale:","options":["0,9 mm","0,98 mm","0,05 mm","0,02 mm"],"answer":1,"explanation":""},
-  {"id":7,"type":"mc","question":"Dovendo qualificare una foratura ∅55H7 con campo di tolleranza (+30 μm – 0) si deve utilizzare","options":["Un calibro ventesimale","Un alesametro tarato mediante anello di azzeramento","Un calibro cinquantesimale","Un comparatore tarato con blocchetti Johansson"],"answer":1,"explanation":""},
-  {"id":8,"type":"mc","question":"L’accuratezza di misura di un comparatore:","options":["Deve essere inferiore allo scostamento più piccolo in valore assoluto del campo di tolleranza","È funzione del numero di divisioni del quadrante ed è pari a 0,01 mm","Dipende dalla procedura di settaggio con il blocchetto Johansson","Definisce il grado di convergenza delle misure rispetto alla quota nominale del corrispettivo blocchetto Johansson"],"answer":2,"explanation":""},
-  {"id":9,"type":"mc","question":"La verifica della tolleranza di parallelismo tra due superfici all’interno di un campo di +20 μm può essere effettuata attraverso","options":["un comparatore riferito ad una delle due superfici","la comparazione con il riferimento rappresentato dai blocchi Johansson","un calibro cinquantesimale","un rugosimetro che rilevi gli errori di forma su entrambe le superfici"],"answer":0,"explanation":""},
-  {"id":10,"type":"mc","question":"Il processo di incrudimento di un metallo è:","options":["Dovuto alla presenza delle dislocazioni nel reticolo cristallino","Dovuto al fatto che la curva in un diagramma sforzo deformazione cresce dopo snervamento","Dovuto all’impossibilità di ulteriori deformazioni per scorrimento lungo i piani cristallini","Favorito dall’aumento della temperatura interna"],"answer":2,"explanation":""},
-  {"id":11,"type":"mc","question":"Il fenomeno dell’incrudimento in una lega risulta in:","options":["Maggior duttilità","Maggior resistenza","Maggior resistenza meccanica","Maggior malleabilità"],"answer":2,"explanation":""},
-  {"id":12,"type":"mc","question":"Per la maggior parte degli acciai la resistenza meccanica a trazione:","options":["è equivalente a circa il triplo della durezza Brinell","è equivalente ai 4/5 della resistenza a taglio","è funzione della tipologia di cella elementare del materiale base","peggiora aumentando la percentuale di allibante"],"answer":0,"explanation":""},
-  {"id":13,"type":"mc","question":"Una prova di durezza HRA:","options":["utilizza valori di precarico superiori alla HRC che è adatta a materiali estremamente duri","viene effettuata analizzando l’impronta lasciata dal penetratore sul materiale","rileva l’affondamento del penetratore nel pezzo in cinquantesimi di millimetro","è adatta ad analizzare le ghise"],"answer":2,"explanation":""},
-  {"id":14,"type":"mc","question":"La prova Rockwell B misura:","options":["La tenacità di un materiale sottoposto alla pressione di una sfera mediante diametro calibrato","La Resilienza di un materiale sottoposto all’urto di una sfera di diametro calibrato","La Resistenza di un materiale alla compenetrazione di una sfera di diametro calibrato","La Malleabilità di un materiale attraverso la rilevazione dell’impronta lasciata da una sfera di diametro calibrato"],"answer":2,"explanation":""},
-  {"id":15,"type":"mc","question":"Per effettuare una prova Rockwell B su un materiale è necessario:","options":["rapportare il carico alla superficie dell'impronta lasciata dalla sfera","rilevarne la malleabilità attraverso la misura dell'impronta lasciata da una sfera di diametro calibrato","misurarne la tenacità a seguito della pressione di una sfera di diametro calibrato","misurare l'affondamento permanente di una sfera"],"answer":3,"explanation":""},
-  {"id":16,"type":"mc","question":"La tenacità di una lega X12Cr17 esprime:","options":["Dipende dalla elevata percentuale di Cromo che influenza l’incrudimento","È elevata grazie a un contenuto di carbonio pari al 12%","Esprime l’energia accumulata dal materiale per unità di volume prima che intervenga rottura","Rappresenta l’energia specifica in [J/mm2] accumulata nell’impatto"],"answer":2,"explanation":""},
-  {"id":17,"type":"mc","question":"In una prova di trazione, la tenacità:","options":["È rappresentata dall’energia specifica per portare a rottura il materiale","Rappresenta l’energia che un materiale può assorbire a seguito di un urto","È l’area sottesa dal diagramma energia di impatto – allungamento","È calcolata a partire dal punto di snervamento dove il materiale esaurisce le sue proprietà elastiche"],"answer":0,"explanation":""},
-  {"id":18,"type":"mc","question":"Una prova Charpy con mazza 15 kg da 2 m e risalita 640 mm: Qual è la resilienza?","options":["8,6 J/mm2","3,2 J/mm2","2,5 J/mm2","10,5 J/mm2"],"answer":2,"explanation":"Sezione = 10 x 8 = 80 mm2
-Hf = 640 mm = 0,64 m Epotenziale iniziale = Epotenziale finale + k
-Energia impiegata nell’impatto k = mghi – mghf = mg( hi -hf) = 15 ∙ 9,81 (2-0,64) = 200,124 J
-200,124/80=200,124/10𝑥8= 2,5 J/mm2"},
-  {"id":19,"type":"mc","question":"L’isteresi elastica di un materiale:","options":["è indipendente dal numero di cicli di carico applicati","determina la propagazione delle linee di spiaggia fino alla rottura","definisce il livello di energia accumulata a seguito delle precedenti sollecitazioni","è identificato dal limite di rottura a fatica"],"answer":2,"explanation":""},
-  {"id":20,"type":"mc","question":"La prova Erichsen determina:","options":["il massimo incurvamento che una lamiera può sopportare","la profondità di penetrazione del punzone prima che intervenga rottura","la forza massima per trasformare la lamiera in un prodotto cavo","la pressione che il punzone deve esercitare affinché la lamiera si deformi senza che intervenga rottura"],"answer":1,"explanation":""},
-  {"id":21,"type":"mc","question":"Scegliere il materiale più adatto per essere impiegato nella fonderia:","options":["X 80 W Co 1810","Gs-Al Si 13","Pl-Al Mn 1,2","C 80"],"answer":1,"explanation":""},
-  {"id":22,"type":"mc","question":"Rispetto alla solidificazione in forma transitoria, un getto ottenuto in forma permanente:","options":["Ha una grana composta da struttura dendritiche fini grazie ad un numero maggiore di direzione di solidificazione","Ha cristalli più piccoli grazie alla maggiore velocità di solidificazione","Ha una fragilità maggiore dovuta alla presenza di un maggiore numero di effetto di intaglio","Ha una resistenza meccanica inferiore dovuta ad un maggior numero di inclusioni nel reticolo cristallino"],"answer":1,"explanation":""},
-  {"id":23,"type":"mc","question":"Il modello per la realizzazione di una cavità per formatura transitoria:","options":["deriva direttamente dal disegno di pezzo finito","non prevede il posizionamento della materozza","non tiene conto del processo di ritiro allo stato solido","implica l'inserimento di eventuali portate d'anima"],"answer":3,"explanation":""},
-  {"id":24,"type":"mc","question":"Nei procedimenti di colata in forma permanente si devono evitare i sottosquadri per:","options":["per permettere l’estrazione del modello dalla forma","per permettere l’estrazione del getto dalla forma","solamente per le superfici sulle quali è previsto il sovrametallo","introducendo gli angoli di sformo"],"answer":1,"explanation":""},
-  {"id":25,"type":"mc","question":"Lo spessore dei sovrametalli da applicare ad un componente da fabbricare per fusione:","options":["Compensa il fenomeno del ritiro nella transizione liquido – solido","È sempre il più piccolo possibile per minimizzare i tempi di raffreddamento","Dipende dalle dimensioni del pezzo e dalla qualità della superficie lavorata","Compensa il ritiro del getto in fase solida"],"answer":2,"explanation":""},
-  {"id":26,"type":"mc","question":"Il disegno di fabbricazione di un greggio di fonderia:","options":["Implica la scelta di un piano di divisione che eviti sottosquadri","Deriva dalla progettazione del modello","Tiene conto del processo di ritiro allo stato solido","Deve prevedere un collare d’attacco per la materozza"],"answer":0,"explanation":""},
-  {"id":27,"type":"mc","question":"Il ritiro allo stato solido di un getto:","options":["È ineliminabile e viene quantificato con la prova Corbellini","È compensato dalla presenza della materozza che solidifica per ultima","È compensato attraverso la maggiorazione delle quote del modello","È indipendente dalla sezione del getto e dalla sua lunghezza"],"answer":2,"explanation":""},
-  {"id":28,"type":"mc","question":"Il modulo di raffreddamento di una piastra 100x100x25 mm vale:","options":["17,5 mm","8,3 mm","12,5 mm","50 mm"],"answer":1,"explanation":"M = 𝑣𝑜𝑙𝑢𝑚𝑒/𝑎𝑟𝑒𝑎=100∙100∙25/2(100∙100 )+4(100 ∙25)= 250000/20000+10000= 8,3"},
-  {"id":29,"type":"mc","question":"Il tempo di raffreddamento di un oggetto di forma cubica è:","options":["dipendente dalla densità della Lega","necessariamente inferiore al tempo di colata","proporzionale al quadrato dello spigolo","dipendente dalla completa solidificazione della materozza ad esso collegata"],"answer":2,"explanation":""},
-  {"id":30,"type":"mc","question":"Il modulo di raffreddamento di un corpo cilindrico cavo con diametro D, altezza H e spessore s vale:","options":["s/6 se il cilindro è circoscritto ad un cubo","0,16D per la presenza della materozza","s/2 se lo spessore è molto piccolo di H e D","(DH^2)/12 trascurando le basi come superfici di scambio"],"answer":2,"explanation":""},
-  {"id":31,"type":"mc","question":"Per la corretta solidificazione di un getto la materozza deve avere:","options":["una giacitura sul piano di divisione se è a cielo aperto","un volume pari a 1,2 volte il volume della parte che solidifica per ultima","un posizionamento tale da influire su ogni direzione","forma cilindrica per aumentare la sua resa"],"answer":2,"explanation":""},
-  {"id":32,"type":"mc","question":"Durante un processo di colata le spinte metallostatiche:","options":["Agiscono sull’anima generando la spinta di Archimede","Agiscono solo sulla staffa superiore","Dipendono dal dislivello rispetto al piano di colata ed agiscono su tutte le superfici in contatto con la vena fluida","Non agiscono su superfici ortogonali al piano di divisione"],"answer":2,"explanation":""},
-  {"id":33,"type":"mc","question":"Durante un processo di colata, le spinte metallostatiche:","options":["dipendono linearmente dalla densità della lega","favoriscono il riempimento della forma nelle zone a minor spessore","non agiscono su superfici ortogonali al piano di divisione","dipendono dal dislivello rispetto al piano di divisione ed agiscono su tutte le superfici in contatto con la vena fluida"],"answer":0,"explanation":""},
-  {"id":34,"type":"mc","question":"In un processo di colata un’anima cilindrica verticale appoggiata sul fondo della forma:","options":["la spinta metallostatica sulla staffa superiore non va decurtata del peso dell’anima","esiste spinta di Archimede solo se esiste una superficie che si oppone alla spinta metallostatica in senso verticale","non esiste spinta di Archimede sull’anima","esiste una spinta di Archimede pari al peso del fluido spostato"],"answer":2,"explanation":""},
-  {"id":35,"type":"mc","question":"In una forma realizzata per shell – molding:","options":["Non si possono colare leghe ferrose a causa della temperatura di fusione prossima a quella della placca modello","Il processo di consolidamento della sabbia avviene per via termica in contatto con la placca modello","Possono essere utilizzati modelli a perdere per evitare il problema dei sottosquadri","Le conchiglie della macchina a camera calda possono essere riutilizzate per processi di formatura successivi"],"answer":1,"explanation":""},
-  {"id":36,"type":"mc","question":"Un getto ottenuto con un processo di shell – molding:","options":["Ha una rugosità superficiale di 2 – 3 micron grazie all’utilizzo di una placca modello rettificata","È soggetto a soffiature perché la forma è poco permeabile","Ha una rugosità superficiale buona grazie alle ridotte dimensioni della sabbia pre-rivestita","È dimensionalmente meno accurato di uno ottenuto in terra sintetica"],"answer":2,"explanation":""},
-  {"id":37,"type":"mc","question":"In un processo di formatura in shell molding:","options":["possono essere usati modelli a perdere per evitare il problema dei sottosquadri","non si possono colare leghe ferrose a causa della temperatura di fusione prossima a quella della placca modello","il processo di consolidamento della sabbia avviene per via termica in contatto con la placca modell","le conchiglie della macchina possono essere riutilizzate per processi di formatura successivi"],"answer":2,"explanation":""},
-  {"id":38,"type":"mc","question":"L’utilizzo di un modello a perdere:","options":["consente di risolvere il problema dei sottosquadri in un processo di shell-molding","è fondamentale in un processo di formatura permanente per la creazione della cavità","non consente l’utilizzo di azioni di comprensione per il consolidamento della forma","è adottato solo in microfusione per getti di piccola dimensione"],"answer":2,"explanation":""},
-  {"id":39,"type":"mc","question":"In una forma realizzata per investment casting:","options":["non si possono colare leghe ferrose a causa della temperatura di fusione prossima a quella del materiale di formatura","il processo di consolidamento della sabbia avviene per via termica in contatto con la placca modello","le conchiglie delle macchine a camera calda possono essere riutilizzate per processi di formatura successivi","vengono utilizzati modelli a perdere per evitare il problema dei sottosquadri"],"answer":3,"explanation":""},
-  {"id":40,"type":"mc","question":"Rispetto alla forma transitoria, un processo di pressofusione:","options":["non necessita di anime e tasselli","ha una produttività maggiore per la colata di leghe ferrose","deve prevedere delle cavità di raccolta dei gas per evitare soffiature nel getto","genera getti più resistenti grazie alle maggiori dimensioni dei grani cristallini"],"answer":2,"explanation":""},
-  {"id":41,"type":"mc","question":"In un processo deformativo, l’effetto della temperatura:","options":["rende il materiale elastico perfettamente plastico","rende più pendente la curva in un diagramma sforzo deformazione dopo lo snervamento","annulla la dipendenza da ε quando il carico è applicato a velocità costante","annulla la dipendenza da ε se la velocità di deformazione è bassa"],"answer":3,"explanation":""},
-  {"id":42,"type":"mc","question":"In un processo di deformazione plastica a caldo il flow stress:","options":["può essere mitigato diminuendo la velocità di deformazione, ad una determinata temperatura","è indipendente dalla deformazione del materiale","aumenta con l’aumentare della temperatura","è linearmente dipendente dalla velocità di applicazione del carico"],"answer":0,"explanation":""},
-  {"id":43,"type":"mc","question":"Nella compressione tra piani paralleli di un tondo in presenza di attrito:","options":["La tensione di scorrimento massima è pari al limite di snervamento del materiale","La pressione di contatto si intensifica laddove il materiale non può scorrere","Lo stato di sollecitazione ha un’unica tensione normale","La tensione massima equivalente è uniforme all’interno della sezione"],"answer":1,"explanation":""},
-  {"id":44,"type":"mc","question":"In un processo di compressione tra piani paralleli in presenza di attrito, la pressione necessaria:","options":["è indipendente dalle dimensioni del materiale","è linearmente dipendente dall’attrito","è direttamente proporzionale al limite di snervamento del materiale","è pari al limite di snervamento equivalente, secondo il criterio di Tresca della massima tensione tangenziale"],"answer":2,"explanation":""},
-  {"id":45,"type":"mc","question":"Con riferimento alla laminazione, la condizione di imbocco:","options":["Impone che la componente tangenziale della forza di contatto sia maggiore della componente normale","Implica che il diametro del rullo laminatore è ininfluente rispetto all’aumentare del coefficiente di attrito","Obbliga che il coefficiente di attrito non superi un valore limite","Impone che la componente orizzontale della forza di contatto tangenziale sia maggiore della componente orizzontale della forza di contatto normale"],"answer":3,"explanation":""},
-  {"id":46,"type":"mc","question":"In un processo di laminazione tra rulli cilindrici di raggio 500 mm e μ=0,3 una lamiera di spessore 100 mm può essere ridotta del:","options":["45%","15%","63%","30%"],"answer":0,"explanation":"Δh/h ≤ μ²R/H = (0,3)² × 500 / 100 = 0,09 × 500 / 100 = 45 / 100 = 0,45 = 45%"},
-  {"id":47,"type":"mc","question":"In un processo di laminazione tra rulli cilindrici di raggio 500 mm e μ=0,2 una lamiera di spessore 100 mm può essere ridotta del:","options":["20%","45%","63%","30%"],"answer":0,"explanation":"Δh/h ≤ μ²R/H = (0,2)² × 500 / 100 = 0,04 × 500 / 100 = 45 / 100 = 0,2 = 20%"},
-  {"id":48,"type":"mc","question":"In un processo di estrusione inversa il carico massimo necessario alla riduzione di sezione è:","options":["indipendente dalla corsa del pistone","dipendente dalla lubrificazione del cilindro","funzione della corsa del pistone"],"answer":0,"explanation":""},
-  {"id":49,"type":"mc","question":"In un processo di estrusione per urto:","options":["Il materiale viene riscaldato per facilitare la deformazione","La risalita del materiale è vincolata all’interno di uno stampo","La risalita del materiale lungo il punzone è libera","Possono essere lavorati anche bronzi grazie all’attrito sviluppato internamente al materiale"],"answer":2,"explanation":""},
-  {"id":50,"type":"mc","question":"In un processo di trafilatura:","options":["il flow stress ideale è proporzionale all’angolo di trafilatura","il flow stress deve essere inferiore al 63% di Rm","l’aumento dell’angolo di trafilatura riduce gli attriti ma aumenta le distorsioni","l’azione compressiva del pistone non deve superare il limite di snervamento del materiale"],"answer":2,"explanation":""},
-  {"id":51,"type":"mc","question":"In un processo di trafilatura il flow stress necessario alla deformazione del materiale:","options":["è proporzionale al limite di snervamento","è inversamente proporzionale ad α","è direttamente proporzionale all'angolo α","è funzione della pressione esercitata sul materiale"],"answer":0,"explanation":""},
-  {"id":52,"type":"mc","question":"In un processo di stampaggio il canale di bava:","options":["consente la tranciatura della bava ovvero del materiale in eccesso","compensa con il suo volume il materiale perso per ossidazione","è dimensionato a partire dall'impronta sul piano di bava","è generato dal fatto che gli stampi non entrano in contatto reciproco"],"answer":2,"explanation":""},
-  {"id":53,"type":"mc","question":"In un processo di stampaggio a caldo il canale di bava:","options":["Consente la tranciatura della bava, ovvero del materiale in eccesso","Compensa con il suo volume il materiale perso per ossidazione","Costituisce una zona di incrudimento preferenziale e favorisce il riempimento","È generato dal fatto che gli stampi non entrano in contatto reciproco"],"answer":2,"explanation":""},
-  {"id":54,"type":"mc","question":"Durante lo stampaggio di un componente assialsimmetrico:","options":["il volume del materiale accolto nel canale di bava è pari al 60% del volume della cavità nello stampo","il volume del materiale si conserva nel passaggio da barra a pezzo finito","il canale di bava deve essere considerato per la definizione di uno sbozzato intermedio","la velocità di deformazione del materiale è definita a prescindere dal canale di bava"],"answer":2,"explanation":""},
-  {"id":55,"type":"mc","question":"In un processo di stampaggio il criterio di Teterin:","options":["è applicabile a componenti di morfologia qualsiasi","definisce un fattore di difficoltà di forma che implica la necessità di passaggi intermedi","permette di calcolare il flow stress e determina il tipo di maglio o pressa da utilizzare","definisce il numero di passaggi intermedi in funzione del rapporto tra l'area della sezione del componente e quella di un cilindro circoscritto"],"answer":1,"explanation":""},
-  {"id":56,"type":"mc","question":"La tranciatura di una lamiera:","options":["richiede l'utilizzo di un dispositivo premilamiera per evitare strappi","necessita dell'applicazione di un carico che dipende linearmente dal perimetro tranciato","prevede l'utilizzo di un gioco tra punzone e matrice almeno pari allo spessore della lamiera","viene effettuata a caldo se la lamiera è in acciaio fortemente legato"],"answer":1,"explanation":""},
-  {"id":57,"type":"mc","question":"Il calcolo del raggio minimo di piegatura:","options":["è legato all’angolo di piegatura","è indipendente dall’angolo di piegatura","prevede l’utilizzo di un fattore correttivo per compensare lo spostamento della fibra neutra","prevede l’utilizzo dell’angolo β per compensare il ritorno elastico"],"answer":1,"explanation":""},
-  {"id":58,"type":"mc","question":"Durante l’imbutitura, le tensioni radiali:","options":["sono di compressione a causa dell’azione del punzone","sono di compressione a causa della pressione applicata dal premilamiera","sono di trazione a causa dell’attrito tra il premilamiera e la lamiera e tra la matrice e la lamiera","sono di trazione a causa della progressiva riduzione di diametro"],"answer":2,"explanation":""},
-  {"id":59,"type":"mc","question":"In un'operazione di tornitura cilindrica esterna per avere un processo di taglio ortogonale conviene:","options":["lavorare con γ nullo e basso avanzamento a giro","lavorare con ψ nullo e basse profondità di passata","aumentare il più possibile l'angolo del tagliente principale","ridurre a zero l'angolo di registrazione del tagliente principale"],"answer":1,"explanation":""},
-  {"id":60,"type":"mc","question":"Una barra in C40 ... La forza di taglio vale:","options":["2000 Mpa","2 kN","1 kN","1000 kN/m^2"],"answer":1,"explanation":""},
-  {"id":61,"type":"mc","question":"Una barra in C40 ... La potenza richiesta per il taglio vale:","options":["11,2 kJ/s","2000 W","15,7 kW","0,87 kW"],"answer":2,"explanation":""},
-  {"id":62,"type":"mc","question":"In utensile monotagliente l'angolo α'","options":["è necessario affinché non ci sia strisciamento sul fianco secondario","evita lo strisciamento con la superficie lavorata","definisce la sezione resistenze della punta","permette all'utente di poter asportare il materiale lungo un percorso elicoidale"],"answer":0,"explanation":""},
-  {"id":63,"type":"mc","question":"In un utensile monotagliente, angoli di spoglia superiore positivi:","options":["Aumentano la pressione di taglio specifica","Aumentano la vita del tagliente principale","Riducono la sezione resistente della punta limitando la possibilità di lavorare materiali molto duri","Consentono di trasformare in compressivo lo stato di tensione sul tagliente e quindi di lavorare materiali molto duri"],"answer":2,"explanation":""},
-  {"id":64,"type":"mc","question":"Un angolo di spoglia superiore negativo:","options":["Pone un limite al valore dell’avanzamento per evitare lo strisciamento dell’utensile","Provoca minor deformazione","Garantisce una tensione di compressione all’interno di un utensile fragile","Necessità di minori potenze di taglio"],"answer":2,"explanation":""},
-  {"id":65,"type":"mc","question":"Al fine di incrementare la durata di un utensile monotagliente conviene:","options":["Aumentare la velocità di taglio a parità di avanzamento e profondità di passata","Aumentare l’angolo ψ (psi ) per aumentare la lunghezza del tagliente in presa","Aumentare l’angolo γ (gamma) per spostare il cratere di usura lontano dalla punta","Ridurre lo spessore del truciolo per sollecitare meno il tagliente","Ridurre l’angolo α per sollecitare meno la punta"],"answer":1,"explanation":""},
-  {"id":66,"type":"mc","question":"La misurazione della rugosità su una superficie tornita:","options":["È indipendente dalla direzione di rilevazione","Deve essere effettuata parallelamente alla profondità di passata","Deve considerare che l’orientamento prevalente dipende dalla velocità di taglio posseduta dal pezzo","Deve tenere conto dell’orientamento prevalente che è funzione dell’avanzamento dell’utensile"],"answer":3,"explanation":""},
-  {"id":67,"type":"mc","question":"Con riferimento ai fenomeni di usura di un utensile:","options":["la condizione critica tra KT/KM = 0,1 e VB = 0,3 è funzione della velocità di taglio","secondo le norme ISO, il limite di usura massimo può essere valutato arbitrariamente sul petto o sul fianco","il labbro di usura si manifesta sul petto a causa dello strisciamento del truciolo","la posizione del cratere di usura relativa al tagliente aumenta con l’usura"],"answer":0,"explanation":""},
-  {"id":68,"type":"mc","question":"Il coefficiente di durata del tagliente per durata 1 min a Vt=150 e 100 min a Vt=50 vale:","options":["0,235","0,125","0,330","non può essere calcolato"],"answer":0,"explanation":"Applicando la legge di Taylor V₁T₁ⁿ = V₂T₂ⁿ con i dati forniti (V₁=150 m/min, T₁=1 min, V₂=50 m/min, T₂=100 min), si calcola n=ln(V1/v2)/ln(T2/T1) = ln(150/50)/ln(100/1) = ln(3)/ln(100) = 1,0986/4,6052 = 0,2386 ≈ 0,235.
-"},
-  {"id":69,"type":"mc","question":"Gli elementi di lega sono aggiunti ad un metallo puro solitamente per:","options":["Aumentarne la temperatura di fusione","Aumentarne la resistenza meccanica","Incrementare la duttilità a discapito della durezza","Facilitare lo scorrimento tra piani cristallini favorendo l’aumento del numero di dislocazioni"],"answer":1,"explanation":""},
-  {"id":70,"type":"mc","question":"La misurazione della rugosità su una superficie spianata in fresatura a taglio periferico:","options":["è indipendente dal moto di avanzamento","dipende dalla profondità di passata","deve tenere conto dell’orientamento prevalente che è funzione del moto di avanzamento","può risultare inferiore a 1 micron"],"answer":2,"explanation":""},
-  {"id":71,"type":"mc","question":"Per il calcolo della potenza in un’operazione di fresatura periferica in opposizione si ipotizza p<<Df:","options":["la sezione del truciolo possa essere assimilata ad az","sia ridotta al minimo la componente verticale che distacca il pezzo dagli staffaggi","possa considerarsi un solo dente in presa","l’azione di strisciamento possa essere limitata"],"answer":2,"explanation":""},
-  {"id":72,"type":"mc","question":"Un foro ɸ25H8 dovrebbe essere realizzato su una fresatrice:","options":["se la foratura fosse l'unica operazione da fare con il trapano","se la posizione del suo asse è tollerata con risoluzione inferiore a 0,02 mm","perché la rugosità superficiale ne giustifica l'utilizzo","solo se il diametro supera i 25 mm"],"answer":1,"explanation":""},
-  {"id":73,"type":"mc","question":"Due superfici legate da tolleranza di concentricità devono essere:","options":["misurate attraverso l'utilizzo di un comparatore tarato su una delle superfici","realizzate necessariamente nella stessa sottofase","realizzati facendo ruotare il pezzo attorno allo stesso asse","portate ad un grado di rugosità di almeno 1µm"],"answer":2,"explanation":""},
-  {"id":74,"type":"mc","question":"Le saldature autogene:","options":["Necessitano della presenza di materiale d’apporto","Non necessitano del materiale d’apporto","Prevedono che il bagno fuso sia composto anche dal metallo base","Non mostrano zone termicamente alterate"],"answer":2,"explanation":""},
-  {"id":75,"type":"mc","question":"Il processo di saldatura per punto è:","options":["Autogeno generato per effetto Joule tra due lamiere poste in contatto e premute tra elettrodi","Autogeno con riscaldamento da arco elettrico","Eterogeno vista l’assenza di materiale di apporto","Eterogeno in quanto gli elettrodi sono di materiale diverso rispetto alle lamiere"],"answer":0,"explanation":""},
-  {"id":76,"type":"mc","question":"In un processo di saldatura per punti il giunto si sviluppa all'interfaccia tra le lamiere perché:","options":["non c'è necessità del materiale d'apporto","è il punto in cui la resistenza elettrica è maggiore","gli elettrodi hanno punto di fusione più alto","gli elettrodi sono raffreddati"],"answer":1,"explanation":""},
-  {"id":77,"type":"mc","question":"In un processo di saldatura per punti il giunto viene generato tra due lamiere perché:","options":["è la zona dove viene inserito il materiale di apporto basso fondente","è il punto a maggior conducibilità elettrica","la minor superficie di contatto aumenta localmente la resistività elettrica","gli elettrodi sono raffreddati ed evitano la fusione"],"answer":2,"explanation":""},
-  {"id":78,"type":"mc","question":"In un processo di taglio con cannello ossiacetilenico di una lamiera in Fe360 il materiale viene:","options":["rimosso per fusione dall’arco elettrico","asportato direttamente per fusione","ossidato e l’ossido viene asportato per fusione","vaporizzato dal plasma generato dalla ionizzazione dell’acetilene"],"answer":2,"explanation":""},
-  {"id":79,"type":"mc","question":"In un processo di saldatura ad arco elettrico:","options":["Il rivestimento dell’elettrodo è metallurgicamente simile al materiale base","Gli spessori saldabili sono inferiori a 25 mm e non prevedono cianfrinatura","La caratteristica elettrica dell’arco non è proporzionale alla corrente","L’intensità di corrente aumenta con la distanza tra gli elettrodi"],"answer":2,"explanation":""},
-  {"id":80,"type":"mc","question":"In saldatura a corrente continua con elettrodo rivestito, collegare l’elettrodo al polo negativo:","options":["aumenta la deposizione oraria","aumenta la penetrazione del giunto","consente di ridurre le zone termicamente alterate","induce effetti significativi sulla stabilità dell’arco elettrico"],"answer":1,"explanation":""},
-  {"id":81,"type":"mc","question":"In saldatura di una lega P-AlSi0,4:","options":["il materiale viene unito per ossidazione fusione","Il rivestimento dell’elettrodo deve essere metallurgicamente simile al materiale base","può essere impiegato il cannello ossiacetilenico con l'aggiunta di polveri di Fe","deve essere utilizzato un gas inerte per proteggere il materiale dall’ossidazione"],"answer":3,"explanation":""},
-  {"id":82,"type":"mc","question":"Il taglio di una lamiera P-AlMgSi (6060) spessore 10 mm:","options":["è ottenibile utilizzando un fascio plasma di Ar","è ottenibile con cannello ossiacetilenico","può essere realizzato attraverso cannello ossiacetilenico con l’aggiunta di polveri ferrose","è reso possibile attraverso l’impiego di una torcia TIG"],"answer":0,"explanation":""},
-  {"id":83,"type":"mc","question":"In una saldatura MIG il controllo della distanza tra elettrodo e pezzo:","options":["impatta sulla corrente che porta a fusione il materiale","è facilitato dall'assenza di materiale d'apporto","è facilmente aggiustabile attraverso l'adozione automatica del materiale di apporto","rende necessario l'utilizzare macchine con curva I-V fortemente pendente"],"answer":2,"explanation":""}
+  {
+    "id": 1,
+    "type": "mc",
+    "question": "L’impostazione di un filtro di cut-off per un rugosimetro",
+    "options": [
+      "È inferiore a 0,8 mm quando le lavorazioni sono grossolane",
+      "Influenza la determinazione della tessitura primaria",
+      "Serve ad escludere tessiture con periodicità ad esso inferiori",
+      "Definisce la risoluzione dello strumento"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 2,
+    "type": "mc",
+    "question": "La rivelazione dell'ondulazione di una superficie",
+    "options": [
+      "è generata dal pattino",
+      "si ottiene filtrando la tessitura primaria",
+      "è comprensiva anche della tessitura primaria",
+      "è inutile su una superficie anisotropa"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 3,
+    "type": "mc",
+    "question": "In un processo di tornitura la rugosità media aritmetica generata",
+    "options": [
+      "dipende dalla profondità di passata",
+      "è indipendente dalla velocità di taglio utilizzata",
+      "è funzione dell’angolo di taglio",
+      "vale un quarto della rugosità Rz (ISO)"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 4,
+    "type": "mc",
+    "question": "Due superfici speculari con un rapporto opposto tra pieni e vuoti hanno",
+    "options": [
+      "la stessa curva di Abbott",
+      "la stessa Ra",
+      "curve di Abbott simmetriche",
+      "la stessa curva di densità delle ordinate"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 5,
+    "type": "mc",
+    "question": "Da un punto di vista metrologico, la risoluzione di uno strumento deve essere",
+    "options": [
+      "Inferiore agli estremi del campo di tolleranza della quota misurata",
+      "Funzione della sola quota nominale da misurare",
+      "Scelta in base alle tolleranze generali di lavorazione",
+      "Calibrata mediante uso di campioni di riferimento"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 6,
+    "type": "mc",
+    "question": "L'unità fondamentale di un nonio cinquantesima su un calibro a corsoio vale",
+    "options": [
+      "0,9 mm",
+      "0,98 mm",
+      "0,05 mm",
+      "0,02 mm"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 7,
+    "type": "mc",
+    "question": "Dovendo qualificare una foratura ∅55H7 con campo di tolleranza (+ 30 𝜇m – 0 ) si deve utilizzare",
+    "options": [
+      "Un calibro ventesimale",
+      "Un alesametro tarato mediante anello di azzeramento",
+      "Un calibro cinquantesimale",
+      "Un comparatore tarato con blocchetti Johansson"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 8,
+    "type": "mc",
+    "question": "L’accuratezza di misura di un comparatore",
+    "options": [
+      "Deve essere inferiore allo scostamento più piccolo in valore assoluto del campo di tolleranza",
+      "È funzione del numero di divisioni del quadrante ed è pari a 0,01 mm",
+      "Dipende dalla procedura di settaggio con il blocchetto Johansson",
+      "Definisce il grado di convergenza delle misure rispetto alla quota nominale del corrispettivo blocchetto Johansson"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 9,
+    "type": "mc",
+    "question": "La verifica della tolleranza di parallelismo tra due superfici all’interno di un campo di +20 𝜇m può essere effettuata attraverso",
+    "options": [
+      "un comparatore riferito ad una delle due superfici",
+      "la comparazione con il riferimento rappresentato dai blocchi Johansson",
+      "un calibro cinquantesimale",
+      "un rugosimetro che rilevi gli errori di forma su entrambe le superfici"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 10,
+    "type": "mc",
+    "question": "Il processo di incrudimento di un metallo è",
+    "options": [
+      "Dovuto alla presenza delle dislocazioni nel reticolo cristallino",
+      "Dovuto al fatto che la curva in un diagramma sforzo deformazione cresce dopo snervamento",
+      "Dovuto all’impossibilità di ulteriori deformazioni per scorrimento lungo i piani cristallini",
+      "Favorito dall’aumento della temperatura interna"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 11,
+    "type": "mc",
+    "question": "Il fenomeno dell’incrudimento in una lega risulta in",
+    "options": [
+      "Maggior duttilità",
+      "Maggior resistenza",
+      "Maggior resistenza meccanica",
+      "Maggior malleabilità"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 12,
+    "type": "mc",
+    "question": "Per la maggior parte degli acciai la resistenza meccanica a trazione",
+    "options": [
+      "è equivalente a circa il triplo della durezza Brinell",
+      "è equivalente ai ⅘ della resistenza a taglio",
+      "è funzione della tipologia di cella elementare del materiale base",
+      "peggiora aumentando la percentuale di allibante"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 13,
+    "type": "mc",
+    "question": "Una prova di durezza HRA",
+    "options": [
+      "utilizza valori di precarico superiori alla HRC che è adatta a materiali estremamente duri",
+      "viene effettuata analizzando l’impronta lasciata dal penetratore sul materiale",
+      "rileva l’affondamento del penetratore nel pezzo in cinquantesimi di millimetro",
+      "è adatta ad analizzare le ghise"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 14,
+    "type": "mc",
+    "question": "La prova Rockwell B misura",
+    "options": [
+      "La tenacità di un materiale sottoposto alla pressione di una sfera mediante diametro calibrato",
+      "La Resilienza di un materiale sottoposto all’urto di una sfera di diametro calibrato",
+      "La Resistenza di un materiale alla compenetrazione di una sfera di diametro calibrato",
+      "La Malleabilità di un materiale attraverso la rilevazione dell’impronta lasciata da una sfera di diametro calibrato"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 15,
+    "type": "mc",
+    "question": "Per effettuare una prova Rockwell B su un materiale è necessario",
+    "options": [
+      "rapportare il carico alla superficie dell'impronta lasciata dalla sfera",
+      "rilevarne la malleabilità attraverso la misura dell'impronta lasciata da una sfera di diametro calibrato",
+      "misurarne la tenacità a seguito della pressione di una sfera di diametro calibrato",
+      "misurare l'affondamento permanente di una sfera"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 16,
+    "type": "mc",
+    "question": "La tenacità di una lega X12Cr17 (acciaio fortemente legato con 17% di cromo e 0,12% di carbonio, acciaio inox)",
+    "options": [
+      "Dipende dalla elevata percentuale di Cromo che influenza l’incrudimento",
+      "È elevata grazie a un contenuto di carbonio pari al 12%",
+      "Esprime l’energia accumulata dal materiale per unità di volume prima che intervenga rottura",
+      "Rappresenta l’energia specifica in [J/mm2] accumulata nell’impatto"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 17,
+    "type": "mc",
+    "question": "In una prova di trazione, la tenacità",
+    "options": [
+      "È rappresentata dall’energia specifica per portare a rottura il materiale",
+      "Rappresenta l’energia che un materiale può assorbire a seguito di un urto",
+      "È l’area sottesa dal diagramma energia di impatto – allungamento",
+      "È calcolata a partire dal punto di snervamento dove il materiale esaurisce le sue proprietà elastiche"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 18,
+    "type": "mc",
+    "question": "Una prova Charpy viene effettuata con una mazza di 15 kg da un'altezza di 2 m su un provino di sezione resistente 10 × 8 mm. A seguito dell'impatto, la mazza risale di 640 mm. Qual è la resilienza del materiale?",
+    "options": [
+      "8,6 J/mm2",
+      "3,2 J/mm2",
+      "2,5 J/mm2",
+      "10,5 J/mm2"
+    ],
+    "answer": 2,
+    "explanation": "Sezione = 10 × 8 = 80 mm2. Altezza finale Hf = 0,64 m. Energia impiegata k = mg(hi − hf) = 15 × 9,81 × (2 − 0,64) ≈ 200,124 J. Resilienza = k / sezione = 200,124 / 80 ≈ 2,5 J/mm2."
+  },
+  {
+    "id": 19,
+    "type": "mc",
+    "question": "L’isteresi elastica di un materiale",
+    "options": [
+      "è indipendente dal numero di cicli di carico applicati",
+      "determina la propagazione delle linee di spiaggia fino alla rottura",
+      "definisce il livello di energia accumulata a seguito delle precedenti sollecitazioni",
+      "è identificato dal limite di rottura a fatica"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 20,
+    "type": "mc",
+    "question": "La prova Erichsen determina",
+    "options": [
+      "il massimo incurvamento che una lamiera può sopportare",
+      "la profondità di penetrazione del punzone prima che intervenga rottura",
+      "la forza massima per trasformare la lamiera in un prodotto cavo",
+      "la pressione che il punzone deve esercitare affinché la lamiera si deformi senza che intervenga rottura"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 21,
+    "type": "mc",
+    "question": "Scegliere il materiale più adatto per essere impiegato nella fonderia",
+    "options": [
+      "X 80 W Co 1810",
+      "Gs-Al Si 13",
+      "Pl-Al Mn 1,2",
+      "C 80"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 22,
+    "type": "mc",
+    "question": "Rispetto alla solidificazione in forma transitoria, un getto ottenuto in un processo di colata in forma permanente",
+    "options": [
+      "Ha una grana composta da strutture dendritiche fini grazie ad un numero maggiore di direzioni di solidificazione",
+      "Ha cristalli più piccoli grazie alla maggiore velocità di solidificazione",
+      "Ha una fragilità maggiore dovuta alla presenza di un maggiore numero di effetti di intaglio",
+      "Ha una resistenza meccanica inferiore dovuta ad un maggior numero di inclusioni nel reticolo cristallino"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 23,
+    "type": "mc",
+    "question": "Il modello per la realizzazione di una cavità per formatura transitoria",
+    "options": [
+      "deriva direttamente dal disegno di pezzo finito",
+      "non prevede il posizionamento della materozza",
+      "non tiene conto del processo di ritiro allo stato solido",
+      "implica l'inserimento di eventuali portate d'anima"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 24,
+    "type": "mc",
+    "question": "Nei procedimenti di colata in forma permanente si devono evitare i sottosquadri",
+    "options": [
+      "per permettere l’estrazione del modello dalla forma",
+      "per permettere l’estrazione del getto dalla forma",
+      "solamente per le superfici sulle quali è previsto il sovrametallo",
+      "introducendo gli angoli di sformo"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 25,
+    "type": "mc",
+    "question": "Lo spessore dei sovrametalli da applicare ad un componente da fabbricare per fusione",
+    "options": [
+      "Compensa il fenomeno del ritiro nella transizione liquido–solido",
+      "È sempre il più piccolo possibile per minimizzare i tempi di raffreddamento",
+      "Dipende dalle dimensioni del pezzo e dalla qualità della superficie lavorata",
+      "Compensa il ritiro del getto in fase solida"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 26,
+    "type": "mc",
+    "question": "Il disegno di fabbricazione di un greggio di fonderia",
+    "options": [
+      "Implica la scelta di un piano di divisione che eviti sottosquadri",
+      "Deriva dalla progettazione del modello",
+      "Tiene conto del processo di ritiro allo stato solido",
+      "Deve prevedere un collare d’attacco per la materozza"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 27,
+    "type": "mc",
+    "question": "Il ritiro allo stato solido di un getto",
+    "options": [
+      "È ineliminabile e viene quantificato con la prova Corbellini",
+      "È compensato dalla presenza della materozza che solidifica per ultima",
+      "È compensato attraverso la maggiorazione delle quote del modello",
+      "È indipendente dalla sezione del getto e dalla sua lunghezza"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 28,
+    "type": "mc",
+    "question": "Il modulo di raffreddamento di una piastra 100×100×25 mm vale",
+    "options": [
+      "17,5 mm",
+      "8,3 mm",
+      "12,5 mm",
+      "50 mm"
+    ],
+    "answer": 1,
+    "explanation": "M = volume / area = (100 × 100 × 25) / [2(100 × 100) + 4(100 × 25)] = 250000 / (20000 + 10000) = 8,3 mm."
+  },
+  {
+    "id": 29,
+    "type": "mc",
+    "question": "Il tempo di raffreddamento di un oggetto di forma cubica è",
+    "options": [
+      "dipendente dalla densità della lega",
+      "necessariamente inferiore al tempo di colata",
+      "proporzionale al quadrato dello spigolo",
+      "dipendente dalla completa solidificazione della materozza ad esso collegata"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 30,
+    "type": "mc",
+    "question": "Il modulo di raffreddamento di un corpo cilindrico cavo avente diametro esterno D, altezza H e spessore s vale",
+    "options": [
+      "s/6 se il cilindro è circoscritto ad un cubo",
+      "0,16D per la presenza della materozza",
+      "s/2 se lo spessore è molto piccolo rispetto a H e D",
+      "(DH^2)/12 trascurando le basi come superfici di scambio"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 31,
+    "type": "mc",
+    "question": "Per la corretta solidificazione di un getto la materozza deve avere",
+    "options": [
+      "una giacitura sul piano di divisione se è a cielo aperto",
+      "un volume pari a 1,2 volte il volume della parte che solidifica per ultima",
+      "un posizionamento tale da influire su ogni direzione",
+      "forma cilindrica per aumentare la sua resa"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 32,
+    "type": "mc",
+    "question": "Durante un processo di colata le spinte metallostatiche",
+    "options": [
+      "Agiscono sull’anima generando la spinta di Archimede",
+      "Agiscono solo sulla staffa superiore",
+      "Dipendono dal dislivello rispetto al piano di colata ed agiscono su tutte le superfici in contatto con la vena fluida",
+      "Non agiscono su superfici ortogonali al piano di divisione"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 33,
+    "type": "mc",
+    "question": "Durante un processo di colata, le spinte metallostatiche",
+    "options": [
+      "dipendono linearmente dalla densità della lega",
+      "favoriscono il riempimento della forma nelle zone a minor spessore",
+      "non agiscono su superfici ortogonali al piano di divisione",
+      "dipendono dal dislivello rispetto al piano di divisione ed agiscono su tutte le superfici in contatto con la vena fluida"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 34,
+    "type": "mc",
+    "question": "In un processo di colata un’anima cilindrica verticale è appoggiata sul fondo della forma quindi",
+    "options": [
+      "la spinta metallostatica sulla staffa superiore non va decurtata del peso dell’anima",
+      "esiste spinta di Archimede solo se esiste una superficie che si oppone alla spinta metallostatica in senso verticale",
+      "non esiste spinta di Archimede sull’anima",
+      "esiste una spinta di Archimede pari al peso del fluido spostato"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 35,
+    "type": "mc",
+    "question": "In una forma realizzata per shell–molding",
+    "options": [
+      "Non si possono colare leghe ferrose a causa della temperatura di fusione prossima a quella della placca modello", 
+      "Il processo di consolidamento della sabbia avviene per via termica in contatto con la placca modello",
+      "Possono essere utilizzati modelli a perdere per evitare il problema dei sottosquadri",
+      "Le conchiglie della macchina a camera calda possono essere riutilizzate per processi di formatura successivi"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 36,
+    "type": "mc",
+    "question": "Un getto ottenuto con un processo di shell–molding",
+    "options": [
+      "Ha una rugosità superficiale di 2–3 micron grazie all’utilizzo di una placca modello rettificata",
+      "È soggetto a soffiature perché la forma è poco permeabile",
+      "Ha una rugosità superficiale buona grazie alle ridotte dimensioni della sabbia pre-rivestita",
+      "È dimensionalmente meno accurato di uno ottenuto in terra sintetica"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 37,
+    "type": "mc",
+    "question": "In un processo di formatura in shell molding",
+    "options": [
+      "possono essere usati modelli a perdere per evitare il problema dei sottosquadri",
+      "non si possono colare leghe ferrose a causa della temperatura di fusione prossima a quella della placca modello",
+      "il processo di consolidamento della sabbia avviene per via termica in contatto con la placca modell",
+      "le conchiglie della macchina possono essere riutilizzate per processi di formatura successivi"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 38,
+    "type": "mc",
+    "question": "L’utilizzo di un modello a perdere",
+    "options": [
+      "consente di risolvere il problema dei sottosquadri in un processo di shell-molding",
+      "è fondamentale in un processo di formatura permanente per la creazione della cavità",
+      "non consente l’utilizzo di azioni di comprensione per il consolidamento della forma",
+      "è adottato solo in microfusione per getti di piccola dimensione"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 39,
+    "type": "mc",
+    "question": "In una forma realizzata per investment casting",
+    "options": [
+      "non si possono colare leghe ferrose a causa della temperatura di fusione prossima a quella del materiale di formatura",
+      "il processo di consolidamento della sabbia avviene per via termica in contatto con la placca modello",
+      "le conchiglie delle macchine a camera calda possono essere riutilizzate per processi di formatura successivi",
+      "vengono utilizzati modelli a perdere per evitare il problema dei sottosquadri"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 40,
+    "type": "mc",
+    "question": "Rispetto alla forma transitoria, un processo di pressofusione",
+    "options": [
+      "non necessita di anime e tasselli",
+      "ha una produttività maggiore per la colata di leghe ferrose",
+      "deve prevedere delle cavità di raccolta dei gas per evitare soffiature nel getto",
+      "genera getti più resistenti grazie alle maggiori dimensioni dei grani cristallini"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 41,
+    "type": "mc",
+    "question": "In un processo deformativo, l’effetto della temperatura",
+    "options": [
+      "rende il materiale elastico perfettamente plastico",
+      "rende più pendente la curva in un diagramma sforzo–deformazione dopo lo snervamento",
+      "annulla la dipendenza da 𝜀 quando il carico è applicato a velocità costante",
+      "annulla la dipendenza da 𝜀 se la velocità di deformazione è bassa"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 42,
+    "type": "mc",
+    "question": "In un processo di deformazione plastica a caldo il flow stress",
+    "options": [
+      "può essere mitigato diminuendo la velocità di deformazione, ad una determinata temperatura",
+      "è indipendente dalla deformazione del materiale",
+      "aumenta con l’aumentare della temperatura",
+      "è linearmente dipendente dalla velocità di applicazione del carico"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 43,
+    "type": "mc",
+    "question": "Nella compressione tra piani paralleli di un tondo in presenza di attrito",
+    "options": [
+      "La tensione di scorrimento massima è pari al limite di snervamento del materiale",
+      "La pressione di contatto si intensifica laddove il materiale non può scorrere",
+      "Lo stato di sollecitazione ha un’unica tensione normale",
+      "La tensione massima equivalente è uniforme all’interno della sezione"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 44,
+    "type": "mc",
+    "question": "In un processo di compressione tra piani paralleli in presenza di attrito, la pressione necessaria",
+    "options": [
+      "è indipendente dalle dimensioni del materiale",
+      "è linearmente dipendente dall’attrito",
+      "è direttamente proporzionale al limite di snervamento del materiale",
+      "è pari al limite di snervamento equivalente, secondo il criterio di Tresca della massima tensione tangenziale"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 45,
+    "type": "mc",
+    "question": "Con riferimento alla laminazione, la condizione di imbocco",
+    "options": [
+      "Impone che la componente tangenziale della forza di contatto sia maggiore della componente normale",
+      "Implica che il diametro del rullo laminatore è ininfluente rispetto all’aumentare del coefficiente di attrito",
+      "Obbliga che il coefficiente di attrito non superi un valore limite",
+      "Impone che la componente orizzontale della forza di contatto tangenziale sia maggiore della componente orizzontale della forza di contatto normale"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 46,
+    "type": "mc",
+    "question": "In un processo di laminazione tra rulli cilindrici di raggio pari a 500 mm e con μ=0,3 una lamiera dello spessore di 100 mm può essere ridotta del",
+    "options": [
+      "45%",
+      "15%",
+      "63%",
+      "30%"
+    ],
+    "answer": 0,
+    "explanation": "Δh/h ≤ μ²R/H = (0,3)² × 500 / 100 = 0,09 × 500 / 100 = 45 / 100 = 0,45 = 45%."
+  },
+  {
+    "id": 47,
+    "type": "mc",
+    "question": "In un processo di laminazione tra rulli cilindrici di raggio pari a 500 mm e con μ=0,2 una lamiera dello spessore di 100 mm può essere ridotta del",
+    "options": [
+      "20%",
+      "45%",
+      "63%",
+      "30%"
+    ],
+    "answer": 0,
+    "explanation": "Δh/h ≤ μ²R/H = (0,2)² × 500 / 100 = 0,04 × 500 / 100 = 0,2 = 20%."
+  },
+  {
+    "id": 48,
+    "type": "mc",
+    "question": "In un processo di estrusione inversa il carico massimo necessario alla riduzione di sezione è",
+    "options": [
+      "indipendente dalla corsa del pistone",
+      "dipendente dalla lubrificazione del cilindro",
+      "funzione della corsa del pistone"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 49,
+    "type": "mc",
+    "question": "In un processo di estrusione per urto",
+    "options": [
+      "Il materiale viene riscaldato per facilitare la deformazione",
+      "La risalita del materiale è vincolata all’interno di uno stampo",
+      "La risalita del materiale lungo il punzone è libera",
+      "Possono essere lavorati anche bronzi grazie all’attrito sviluppato internamente al materiale"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 50,
+    "type": "mc",
+    "question": "In un processo di trafilatura",
+    "options": [
+      "il flow stress ideale è proporzionale all’angolo di trafilatura",
+      "il flow stress deve essere inferiore al 63% di Rm",
+      "l’aumento dell’angolo di trafilatura riduce gli attriti ma aumenta le distorsioni",
+      "l’azione compressiva del pistone non deve superare il limite di snervamento del materiale"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 51,
+    "type": "mc",
+    "question": "In un processo di trafilatura il flow stress necessario alla deformazione del materiale",
+    "options": [
+      "è proporzionale al limite di snervamento",
+      "è inversamente proporzionale ad α",
+      "è direttamente proporzionale all'angolo α",
+      "è funzione della pressione esercitata sul materiale"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 52,
+    "type": "mc",
+    "question": "In un processo di stampaggio il canale di bava",
+    "options": [
+      "consente la tranciatura della bava ovvero del materiale in eccesso",
+      "compensa con il suo volume il materiale perso per ossidazione",
+      "è dimensionato a partire dall'impronta sul piano di bava",
+      "è generato dal fatto che gli stampi non entrano in contatto reciproco"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 53,
+    "type": "mc",
+    "question": "In un processo di stampaggio a caldo il canale di bava",
+    "options": [
+      "Consente la tranciatura della bava, ovvero del materiale in eccesso",
+      "Compensa con il suo volume il materiale perso per ossidazione",
+      "Costituisce una zona di incrudimento preferenziale e favorisce il riempimento",
+      "È generato dal fatto che gli stampi non entrano in contatto reciproco"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 54,
+    "type": "mc",
+    "question": "Durante lo stampaggio di un componente assialsimmetrico",
+    "options": [
+      "il volume del materiale accolto nel canale di bava è pari al 60% del volume della cavità nello stampo",
+      "il volume del materiale si conserva nel passaggio da barra a pezzo finito",
+      "il canale di bava deve essere considerato per la definizione di uno sbozzato intermedio",
+      "la velocità di deformazione del materiale è definita a prescindere dal canale di bava"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 55,
+    "type": "mc",
+    "question": "In un processo di stampaggio il criterio di Teterin",
+    "options": [
+      "è applicabile a componenti di morfologia qualsiasi",
+      "definisce un fattore di difficoltà di forma che implica la necessità di passaggi intermedi",
+      "permette di calcolare il flow stress e determina il tipo di maglio o pressa da utilizzare",
+      "definisce il numero di passaggi intermedi in funzione del rapporto tra l'area della sezione del componente e quella di un cilindro circoscritto"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 56,
+    "type": "mc",
+    "question": "La tranciatura di una lamiera",
+    "options": [
+      "richiede l'utilizzo di un dispositivo premilamiera per evitare strappi",
+      "necessita dell'applicazione di un carico che dipende linearmente dal perimetro tranciato",
+      "prevede l'utilizzo di un gioco tra punzone e matrice almeno pari allo spessore della lamiera",
+      "viene effettuata a caldo se la lamiera è in acciaio fortemente legato"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 57,
+    "type": "mc",
+    "question": "Il calcolo del raggio minimo di piegatura",
+    "options": [
+      "è legato all’angolo di piegatura",
+      "è indipendente dall’angolo di piegatura",
+      "prevede l’utilizzo di un fattore correttivo per compensare lo spostamento della fibra neutra",
+      "prevede l’utilizzo dell’angolo β per compensare il ritorno elastico"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 58,
+    "type": "mc",
+    "question": "Durante l’imbutitura, le tensioni radiali",
+    "options": [
+      "sono di compressione a causa dell’azione del punzone",
+      "sono di compressione a causa della pressione applicata dal premilamiera",
+      "sono di trazione a causa dell’attrito tra il premilamiera e la lamiera e tra la matrice e la lamiera",
+      "sono di trazione a causa della progressiva riduzione di diametro"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 59,
+    "type": "mc",
+    "question": "In un'operazione di tornitura cilindrica esterna per avere un processo di taglio ortogonale conviene",
+    "options": [
+      "lavorare con 𝛾 nullo e basso avanzamento a giro",
+      "lavorare con 𝝍 nullo e basse profondità di passata",
+      "aumentare il più possibile l'angolo del tagliente principale",
+      "ridurre a zero l'angolo di registrazione del tagliente principale"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 60,
+    "type": "mc",
+    "question": "Una barra in C40 (RM = 500 MPa, n=5) di diametro 50 mm e avente carico di strappamento pari a 4 volte RM viene tornita con avanzamento a = 2 mm/giro e profondità di passata p = 0,5 mm. La forza di taglio vale",
+    "options": [
+      "2000 MPa",
+      "2 kN",
+      "1 kN",
+      "1000 kN/m^2"
+    ],
+    "answer": 1,
+    "explanation": "Sezione del truciolo S = a·p = 2 × 0,5 = 1 mm2. La forza specifica p ≈ 4·Rm = 4 × 500 = 2000 MPa, quindi la forza di taglio è circa 2 kN."
+  },
+  {
+    "id": 61,
+    "type": "mc",
+    "question": "Una barra in C40 (RM = 500 MPa, n=5) di diametro 50 mm avente carico di strappamento pari a 4 volte RM viene tornita con a = 2 mm/giro, p = 0,5 mm, n = 50 giri/min. La potenza richiesta per il taglio vale",
+    "options": [
+      "11,2 kJ/s",
+      "2000 W",
+      "15,7 kW",
+      "0,87 kW"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 62,
+    "type": "mc",
+    "question": "In un utensile monotagliente l'angolo α'",
+    "options": [
+      "è necessario affinché non ci sia strisciamento sul fianco secondario",
+      "evita lo strisciamento con la superficie lavorata",
+      "definisce la sezione resistente della punta",
+      "permette all'utensile di poter asportare il materiale lungo un percorso elicoidale"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 63,
+    "type": "mc",
+    "question": "In un utensile monotagliente, angoli di spoglia superiore positivi",
+    "options": [
+      "Aumentano la pressione di taglio specifica",
+      "Aumentano la vita del tagliente principale",
+      "Riducono la sezione resistente della punta limitando la possibilità di lavorare materiali molto duri",
+      "Consentono di trasformare in compressivo lo stato di tensione sul tagliente e quindi di lavorare materiali molto duri"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 64,
+    "type": "mc",
+    "question": "Un angolo di spoglia superiore negativo",
+    "options": [
+      "Pone un limite al valore dell’avanzamento per evitare lo strisciamento dell’utensile",
+      "Provoca minor deformazione",
+      "Garantisce una tensione di compressione all’interno di un utensile fragile",
+      "Necessità di minori potenze di taglio"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 65,
+    "type": "mc",
+    "question": "Al fine di incrementare la durata di un utensile monotagliente conviene",
+    "options": [
+      "Aumentare la velocità di taglio a parità di avanzamento e profondità di passata",
+      "Aumentare l’angolo ψ (psi) per aumentare la lunghezza del tagliente in presa",
+      "Aumentare l’angolo γ (gamma) per spostare il cratere di usura lontano dalla punta",
+      "Ridurre lo spessore del truciolo per sollecitare meno il tagliente",
+      "Ridurre l’angolo α per sollecitare meno la punta"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 66,
+    "type": "mc",
+    "question": "La misurazione della rugosità su una superficie tornita",
+    "options": [
+      "È indipendente dalla direzione di rilevazione",
+      "Deve essere effettuata parallelamente alla profondità di passata",
+      "Deve considerare che l’orientamento prevalente dipende dalla velocità di taglio posseduta dal pezzo",
+      "Deve tenere conto dell’orientamento prevalente che è funzione dell’avanzamento dell’utensile"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 67,
+    "type": "mc",
+    "question": "Con riferimento ai fenomeni di usura di un utensile",
+    "options": [
+      "la condizione critica tra KT/KM = 0,1 e VB = 0,3 è funzione della velocità di taglio",
+      "secondo le norme ISO, il limite di usura massimo può essere valutato arbitrariamente sul petto o sul fianco",
+      "il labbro di usura si manifesta sul petto a causa dello strisciamento del truciolo",
+      "la posizione del cratere di usura relativa al tagliente aumenta con l’usura"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 68,
+    "type": "mc",
+    "question": "Il coefficiente di durata del tagliente di un’operazione di tornitura per la quale la durata è pari a 1 min per Vt = 150 m/min ed a 100 min per Vt = 50 m/min",
+    "options": [
+      "vale 0,235",
+      "vale 0,125",
+      "vale 0,330",
+      "non può essere calcolato in quanto dipende anche dalla sezione di asportazione del truciolo"
+    ],
+    "answer": 0,
+    "explanation": "Dalla legge di Taylor V₁T₁ⁿ = V₂T₂ⁿ, con V₁=150 m/min, T₁=1 min, V₂=50 m/min, T₂=100 min, si ottiene n = ln(150/50)/ln(100/1) ≈ 0,235."
+  },
+  {
+    "id": 69,
+    "type": "mc",
+    "question": "Gli elementi di lega sono aggiunti ad un metallo puro solitamente per",
+    "options": [
+      "Aumentarne la temperatura di fusione",
+      "Aumentarne la resistenza meccanica",
+      "Incrementare la duttilità a discapito della durezza",
+      "Facilitare lo scorrimento tra piani cristallini favorendo l’aumento del numero di dislocazioni"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 70,
+    "type": "mc",
+    "question": "La misurazione della rugosità su una superficie spianata in fresatura a taglio periferico",
+    "options": [
+      "è indipendente dal moto di avanzamento",
+      "dipende dalla profondità di passata",
+      "deve tenere conto dell’orientamento prevalente che è funzione del moto di avanzamento",
+      "può risultare inferiore a 1 micron"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 71,
+    "type": "mc",
+    "question": "Per il calcolo della potenza in un’operazione di fresatura periferica in opposizione si ipotizza",
+    "options": [
+      "p << Df",
+      "la sezione del truciolo possa essere assimilata ad a·z",
+      "sia ridotta al minimo la componente verticale che distacca il pezzo dagli staffaggi",
+      "possa considerarsi un solo dente in presa",
+      "l’azione di strisciamento possa essere limitata"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 72,
+    "type": "mc",
+    "question": "Un foro ɸ25H8 dovrebbe essere realizzato su una fresatrice",
+    "options": [
+      "se la foratura fosse l'unica operazione da fare con il trapano",
+      "se la posizione del suo asse è tollerata con risoluzione inferiore a 0,02 mm",
+      "perché la rugosità superficiale ne giustifica l'utilizzo",
+      "solo se il diametro supera i 25 mm"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 73,
+    "type": "mc",
+    "question": "Due superfici legate da tolleranza di concentricità devono essere",
+    "options": [
+      "misurate attraverso l'utilizzo di un comparatore tarato su una delle superfici",
+      "realizzate necessariamente nella stessa sottofase",
+      "realizzate facendo ruotare il pezzo attorno allo stesso asse",
+      "portate ad un grado di rugosità di almeno 1 µm"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 74,
+    "type": "mc",
+    "question": "Le saldature autogene",
+    "options": [
+      "Necessitano della presenza di materiale d’apporto",
+      "Non necessitano del materiale d’apporto",
+      "Prevedono che il bagno fuso sia composto anche dal metallo base",
+      "Non mostrano zone termicamente alterate"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 75,
+    "type": "mc",
+    "question": "Il processo di saldatura per punto è un processo",
+    "options": [
+      "Autogeno che viene generato per effetto Joule tra due lamiere poste in contatto e premute tra elettrodi",
+      "Autogeno in cui il riscaldamento viene generato da un arco elettrico che scocca tra due elettrodi e coinvolge due lamiere adiacenti",
+      "Eterogeno vista l’assenza di materiale di apporto",
+      "Eterogeno in quanto gli elettrodi sono di materiale diverso rispetto alle lamiere"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 76,
+    "type": "mc",
+    "question": "In un processo di saldatura per punti il giunto si sviluppa all'interfaccia tra le lamiere perché",
+    "options": [
+      "non c'è necessità del materiale d'apporto",
+      "è il punto in cui la resistenza elettrica è maggiore",
+      "gli elettrodi hanno punto di fusione più alto",
+      "gli elettrodi sono raffreddati"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 77,
+    "type": "mc",
+    "question": "In un processo di saldatura per punti il giunto viene generato tra due lamiere perché",
+    "options": [
+      "è la zona dove viene inserito il materiale di apporto basso fondente",
+      "è il punto a maggior conducibilità elettrica",
+      "la minor superficie di contatto aumenta localmente la resistività elettrica",
+      "gli elettrodi sono raffreddati ed evitano la fusione"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 78,
+    "type": "mc",
+    "question": "In un processo di taglio con cannello ossiacetilenico di una lamiera in Fe360 il materiale viene",
+    "options": [
+      "rimosso per fusione dall’arco elettrico che si genera tra il cannello e la superficie sotto opportuno collegamento alla macchina elettrica",
+      "asportato direttamente per fusione",
+      "ossidato e l’ossido viene asportato per fusione",
+      "vaporizzato dal plasma generato dalla ionizzazione dell’acetilene"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 79,
+    "type": "mc",
+    "question": "In un processo di saldatura ad arco elettrico",
+    "options": [
+      "Il rivestimento dell’elettrodo è metallurgicamente simile al materiale base",
+      "Gli spessori saldabili sono inferiori a 25 mm e non prevedono cianfrinatura",
+      "La caratteristica elettrica dell’arco non è proporzionale alla corrente",
+      "L’intensità di corrente aumenta con la distanza tra gli elettrodi e favorisce la deposizione oraria"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 80,
+    "type": "mc",
+    "question": "In un processo di saldatura a corrente continua con elettrodo rivestito, collegare l’elettrodo al polo negativo",
+    "options": [
+      "aumenta la deposizione oraria",
+      "aumenta la penetrazione del giunto",
+      "consente di ridurre le zone termicamente alterate",
+      "induce effetti significativi sulla stabilità dell’arco elettrico"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 81,
+    "type": "mc",
+    "question": "In un processo di saldatura di una lega P-AlSi0,4 (lega leggera per deformazione plastica con 0,4 di silicio)",
+    "options": [
+      "il materiale viene unito per ossidazione fusione",
+      "Il rivestimento dell’elettrodo deve essere metallurgicamente simile al materiale base",
+      "può essere impiegato il cannello ossiacetilenico con l'aggiunta di polveri di Fe",
+      "deve essere utilizzato un gas inerte per proteggere il materiale dall’ossidazione"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 82,
+    "type": "mc",
+    "question": "Il taglio di una lamiera P-AlMgSi (6060) di spessore pari a 10 mm",
+    "options": [
+      "è ottenibile utilizzando un fascio plasma di Ar",
+      "è ottenibile con cannello ossiacetilenico grazie al contributo esotermico della reazione di ossidazione",
+      "può essere realizzato attraverso cannello ossiacetilenico con l’aggiunta di polveri ferrose",
+      "è reso possibile attraverso l’impiego di una torcia TIG"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 83,
+    "type": "mc",
+    "question": "In una saldatura MIG il controllo della distanza tra elettrodo e pezzo",
+    "options": [
+      "impatta sulla corrente che porta a fusione il materiale",
+      "è facilitato dall'assenza di materiale d'apporto",
+      "è facilmente aggiustabile attraverso l'adozione automatica del materiale di apporto",
+      "rende necessario l'utilizzare macchine elettriche con una curva caratteristica I-V fortemente pendente nella zona di utilizzo"
+    ],
+    "answer": 2
+  }
 ]
